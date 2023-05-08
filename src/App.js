@@ -1,9 +1,11 @@
 import './App.css';
+import User from './components/User';
 
 function App() {
+  
   return (
-    <div className="App">
-      react 예요..!!!
+    <div>
+      <User />
     </div>
   );
 }
