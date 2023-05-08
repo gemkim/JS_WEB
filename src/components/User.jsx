@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ContextStore } from '../context/store';
+import { ContextStore } from 'context/store';
 
 const style = {
   container: {

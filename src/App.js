@@ -3,9 +3,9 @@ import React, {useState, useEffect} from "react";
 import { Link, Route, Routes } from 'react-router-dom';
 
 //components
-import User from './components/User';
-import Login from './pages/Login';
-import NotFound from './pages/NotFound';
+import User from 'components/User';
+import Login from 'pages/Login';
+import NotFound from 'pages/NotFound';
 
 function App() {
   const [msg, setMsg] = useState([]);
