@@ -6,21 +6,18 @@ import { Link, Route, Routes } from 'react-router-dom';
 import User from 'components/User';
 import Login from 'pages/Login';
 import NotFound from 'pages/NotFound';
+import Header from 'components/Header/Index';
 
 function App() {
   const [msg, setMsg] = useState([]);
-  useEffect(() => {
-    fetch("/api/hello")
-      .then((res) => {return res.json();})
-      .then((data) => {setMsg(data);})
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/hello")
+  //     .then((res) => {return res.json();})
+  //     .then((data) => {setMsg(data);})
+  // }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <ul>
-            {msg.map((content, idx) => <li key={`${idx} - ${content}`}>{content}</li>)}
-        </ul>
-      </header>
+    <div className="wrap">
+      <Header />
       <ul>
         <li><Link to="/" >home</Link></li>
         <li><Link to="/login" >login</Link></li>

@@ -1,0 +1,68 @@
+$--header-height : 60px;
+
+.header{
+  border-bottom: 1px solid #000;
+  .container{
+    margin: 0 auto;
+    padding: 0 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    height: $--header-height;
+    .logo{
+      width: 100px;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: calc(100% - 350px);
+      .gnb{
+        position: relative;
+        display: block;
+        flex-shrink: 0;
+        width: clamp(75px, 25%, 120px);
+        height: 100%;
+        line-height: $--header-height;
+        font-size: .9rem;
+        text-align: center;
+        ul.subMemu{
+          display: none;
+          position: absolute;
+          top: $--header-height;
+          left: 0;
+          padding: 10px 0;
+          width: 100%;
+          border: 1px solid #000;
+          border-top: none;
+          li.subList{
+            padding: 5px 0;
+            a{
+              width: 100%;
+              display: block;
+              text-align: center;
+            }
+          }
+        }
+        &:hover .subMemu{
+          display: block;
+        }
+      }
+    }
+    .utils{
+      width: 150px;
+      ul{
+        display: flex;
+        li{
+          margin-right: 10px;
+          a{
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
