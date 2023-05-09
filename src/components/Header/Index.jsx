@@ -5,7 +5,8 @@ import styles from './Header.module.scss'
 import GnbMenus from './GnbMenus';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCartShopping, faPowerOff, faStore } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faCartShopping, faPowerOff } from '@fortawesome/free-solid-svg-icons'
+import Logo from 'components/Logo';
 
 const Header = (props) => {
   const subNavbar = [
@@ -64,9 +65,7 @@ const Header = (props) => {
   return(
     <header className={styles.header}>
       <div className={styles.container}>
-        <h1 className={styles.logo}>
-          <Link to="/">JS <FontAwesomeIcon icon={faStore} /><span className='ir'>Shop</span></Link>
-        </h1>
+        <h1><Logo color={'#333'}/></h1>
         <nav className={styles.nav}>
           <ul className={styles.gnb}>
             { subNavbar.map( ({id, category, link, subMenu} )  => (

@@ -8,13 +8,8 @@ $--header-height : 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1280px;
+    max-width: 1480px;
     height: $--header-height;
-    .logo{
-      width: 100px;
-      font-size: 1.6rem;
-      font-weight: bold;
-    }
     .nav{
       width: calc(100% - 350px);
       .gnb{
@@ -24,6 +19,7 @@ $--header-height : 60px;
         justify-content: space-between;
         height: 100%;
         > li{
+          position: relative;
           flex-shrink: 0;
           width: clamp(75px, 25%, 120px);
           > a{
@@ -32,6 +28,21 @@ $--header-height : 60px;
             line-height: $--header-height;
             font-size: .9rem;
             text-align: center;
+          }
+          &:hover{
+            a{
+              font-weight: bold;
+            }
+            &:after{
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: 3px;
+              background-color: #eaa0a0;
+            }
           }
         }
         ul.lnb{
@@ -44,6 +55,11 @@ $--header-height : 60px;
           width: 100%;
           > li{
             padding: 5px 0;
+            &:hover{
+              button{
+                font-weight: bold;
+              }
+            }
             > button{
               width: 100%;
               display: block;
@@ -58,13 +74,14 @@ $--header-height : 60px;
         }
         .lnbBg{
           position: absolute;
-          top: $--header-height;
+          top: $--header-height + 1;
           left: 0;
           right: 0;
           z-index: 1;
           width: 100%;
           height: 150px;
           border-bottom: 1px solid #000;
+          background-color: #ffffffe6;
         }
       }
     }
@@ -74,9 +91,12 @@ $--header-height : 60px;
         display: flex;
         li{
           margin-right: 10px;
-          a{
+          a, button{
             display: block;
             font-size: 1.2rem;
+          }
+          button{
+            padding: 3px 0;
           }
         }
       }
