@@ -1,0 +1,42 @@
+.main{
+  .imageBanner{
+    position: relative;
+    .btnArrows{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      max-width: 1480px;
+      transform: translate(-50%, -50%);
+      button{
+        display: block;
+        color: #fff;
+      }
+    }
+  }
+  .tabWrap{
+    margin-top: 100px;
+    display: flex;
+    .tabLeft{
+      padding: 30px;
+      width: 20%;
+    }
+    .tabRight{
+      width: 80%;
+    }
+  }
+
+  .newPrd{
+    margin-top: 100px;
+    padding: 60px 20px;
+    h2{
+
+      font-weight: bold;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .prd{
+      margin-top: 100px;
+    }
+  }
+}
