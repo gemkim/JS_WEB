@@ -6,9 +6,12 @@
     display: flex;
     justify-content: space-between;
     li{
-      width: clamp(250px, 25%, 300px);
+      margin-right: 15px;
+      width: clamp(200px, 25%, 350px);
+      &:last-child{
+        margin-right: 0;
+      }
       a{
-        height: 450px;
         display: block;
         background-color: #666;
         overflow: hidden;
