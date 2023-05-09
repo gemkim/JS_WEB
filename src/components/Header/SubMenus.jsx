@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom/dist';
 
 import styles from './Header.module.scss'
 
-const SubMenus = ({list}) => {
+const SubMenus = ({menu}) => {
   return(
-    <li className={styles.subList}>
-      <Link href="/">{list}</Link>
+    <li>
+      <button>{menu}</button>
     </li>
   )
 };
