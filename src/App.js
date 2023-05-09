@@ -1,15 +1,10 @@
-import './App.css';
-import React, {useState, useEffect} from "react";
-import { Link, Route, Routes } from 'react-router-dom';
-
-//components
-import User from 'components/User';
-import Login from 'pages/Login';
-import NotFound from 'pages/NotFound';
 import Header from 'components/Header/Index';
+import './App.css';
+import React from "react";
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
-  const [msg, setMsg] = useState([]);
+  // const [msg, setMsg] = useState([]);
   // useEffect(() => {
   //   fetch("/api/hello")
   //     .then((res) => {return res.json();})
@@ -18,16 +13,7 @@ function App() {
   return (
     <div className="wrap">
       <Header />
-      <ul>
-        <li><Link to="/" >home</Link></li>
-        <li><Link to="/login" >login</Link></li>
-      </ul>
-     
-      <Routes>
-        <Route path="/" exact={true} element={<User />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Outlet />
     </div>
   );
 }
