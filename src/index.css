@@ -27,3 +27,11 @@ ol {
   padding-left: 0;
   list-style: none;
 }
+
+.ir{
+  display: block;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  text-indent: -9999px;
+}

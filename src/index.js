@@ -1,22 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+
 import UserDataContext from 'context/store';
-
+import { RouterProvider } from 'react-router-dom';
+import router from 'route';
+//css
 import 'index.css';
-import reportWebVitals from 'reportWebVitals';
 
+//cmponents
 import App from 'App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserDataContext>
-        <App />
-      </UserDataContext>
-    </BrowserRouter>
+    <UserDataContext>
+      <RouterProvider router={router} basename={process.env.PUBLIC_URL}>
+      </RouterProvider>
+    </UserDataContext>
   </React.StrictMode>
 );
-
-reportWebVitals();
