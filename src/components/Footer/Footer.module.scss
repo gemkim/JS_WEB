@@ -1,0 +1,99 @@
+.footer{
+  padding: 30px 15px;
+  width: 100%;
+  border-top: 1px solid #000;
+  .container{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1480px;
+    display: flex;
+    .left{
+      width: 70%;
+      .ftMenu{
+        display: flex;
+        li{
+          position: relative;
+          margin-right: 15px;
+          a{
+            font-size: .8rem;
+            color: #888;
+          }
+          &:after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            width: 1px;
+            height: 50%;
+            background-color: #999;
+            transform: translateY(-50%);
+          }
+         &:last-child{
+          &:after{
+            display: none;
+          }
+         }
+        }
+      }
+      .info{
+        margin-top: 15px;
+        p{
+          font-size: .8rem;
+          line-height: 1.6;
+        }
+      }
+    }
+    .right{
+      display: flex;
+      width: 30%;
+      .cs{
+        margin-right: 8%;
+        flex-shrink: 0;
+        .tel{
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+        .openTime{
+          margin-top: 10px;
+          width: 120px;
+          font-size: .8rem;
+          dt{
+            float: left;
+            margin-right: 10px;
+            font-weight: bold;
+          }
+          dd{
+            margin-left: 0;
+          }
+        }
+      }
+      .bankInfo{
+        flex-shrink: 0;
+        .title{
+          font-size: 1rem;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        dl.bank{
+          margin-top: 10px;
+          font-size: .8rem;
+          dt{
+            min-width: 50px;
+            float: left;
+            margin-right: 10px;
+            font-weight: bold;
+            line-height: 1.8;
+          }
+          dd{
+            line-height: 1.8;
+            margin-left: 0;
+          }
+        }
+        .notice{
+          margin-top: 10px;
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+}

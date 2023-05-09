@@ -1,7 +1,8 @@
 import Header from 'components/Header/Index';
 import './App.css';
 import React from "react";
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Footer from 'components/Footer';
 
 function App() {
   // const [msg, setMsg] = useState([]);
@@ -14,6 +15,7 @@ function App() {
     <div className="wrap">
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }
