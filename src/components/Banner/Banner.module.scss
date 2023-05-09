@@ -1,0 +1,19 @@
+.slides{
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+  overflow: hidden;
+  li{
+    width: 100%;
+    background-color: #000;
+    a{
+      display: block;
+      img{
+        width: 100%;
+        height: 100%;
+        opacity: .9;
+        object-fit: cover;
+      }
+    }
+  }
+}
