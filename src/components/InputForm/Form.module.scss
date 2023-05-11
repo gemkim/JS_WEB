@@ -1,0 +1,14 @@
+.label{
+  display: flex;
+  .title{
+    display: inline-block;
+    width: 30%;
+    font-weight: bold;
+    text-align: right;
+  }
+  input{
+    width: 60%;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+}

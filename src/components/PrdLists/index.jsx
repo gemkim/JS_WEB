@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 import styles from './PrdLists.module.scss'
 
-const PrdLists = (props) => {
+const PrdLists = ({images}) => {
   return (
     <div className={styles.prdWrap}>
       <ul className={styles.lists}>
-        <li>
+      { images.map(({id, imgURL})=>(
+         <li>
           <Link to="">
-            <img src="https://cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040009973.jpg?1677820874" alt="" />
+            <img src={require(`asset/${imgURL}`)} alt={`배너이미지 ${id}`} />
           </Link>
           <div className={styles.details}>
             <p className={styles.title}>블랙라벨 시그니처 380N 레깅스 1+1</p>
@@ -20,45 +21,8 @@ const PrdLists = (props) => {
             </div>
           </div>
         </li>
-        <li>
-          <Link to="">
-            <img src="" alt="" />
-          </Link>
-          <div className={styles.details}>
-            <p className={styles.title}></p>
-            <p className={styles.price}>59,800 <span className={styles.before}>110,000</span></p>
-            <div className={styles.desc}>
-              <span className={styles.event}></span>
-              <p className={styles.text}></p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <Link to="">
-            <img src="" alt="" />
-          </Link>
-          <div className={styles.details}>
-            <p className={styles.title}></p>
-            <p className={styles.price}>59,800 <span className={styles.before}>110,000</span></p>
-            <div className={styles.desc}>
-              <span className={styles.event}></span>
-              <p className={styles.text}></p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <Link to="">
-            <img src="" alt="" />
-          </Link>
-          <div className={styles.details}>
-            <p className={styles.title}></p>
-            <p className={styles.price}>59,800 <span className={styles.before}>110,000</span></p>
-            <div className={styles.desc}>
-              <span className={styles.event}></span>
-              <p className={styles.text}></p>
-            </div>
-          </div>
-        </li>
+        ))
+      }
       </ul>
     </div>
   )

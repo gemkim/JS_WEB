@@ -7,9 +7,6 @@ import router from 'route';
 //css
 import 'index.css';
 
-//cmponents
-import App from 'App';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

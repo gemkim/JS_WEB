@@ -1,14 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom/dist';
+import React, { useState } from 'react';
 
 import styles from './Header.module.scss'
 import GnbMenus from './GnbMenus';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCartShopping, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import Logo from 'components/Logo';
+import NavUtils from 'components/NavUtils';
+import HambugerMenu from './HambugerMenu';
 
-const Header = (props) => {
+const Header = ({isMo}) => {
   const subNavbar = [
     {
       id: 1,
@@ -62,25 +61,48 @@ const Header = (props) => {
     },
   ];
 
+  const [ isMoGnb, setIsMoGnb ] = useState(false)
+
   return(
     <header className={styles.header}>
       <div className={styles.container}>
         <h1><Logo color={'#333'}/></h1>
-        <nav className={styles.nav}>
-          <ul className={styles.gnb}>
-            { subNavbar.map( ({id, category, link, subMenu} )  => (
-              <GnbMenus key={id} category={category} link={link} subMenu={subMenu} />
-            ))}
-          </ul>
-          <div className={styles.lnbBg}></div>
-        </nav>
-        <div className={styles.utilWrap}>
-          <ul className={styles.util}>
-            <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='ir'>검색</span></button></li>
-            <li><Link to="cart"><FontAwesomeIcon icon={faCartShopping} /><span className='ir'>카트</span></Link></li>
-            <li><Link to="/login"><FontAwesomeIcon icon={faPowerOff} /><span className='ir'>로그인</span></Link></li>
-          </ul>
-        </div>
+        { !isMo &&
+          <>
+            <nav className={styles.nav}>
+              <ul className={styles.gnb}>
+                { subNavbar.map( ({id, category, link, subMenu} )  => (
+                  <GnbMenus key={id} category={category} link={link} subMenu={subMenu} />
+                ))}
+              </ul>
+              <div className={styles.lnbBg}></div>
+            </nav>
+          
+            <div className={styles.utilWrap}>
+            <ul className={styles.util}>
+                <NavUtils />
+              </ul>
+            </div>
+          </>
+        }
+        { isMo &&
+          <HambugerMenu />
+        }
+        { isMo && isMoGnb &&
+          <>
+            <div className={styles.moLnb}>
+              <ul className={styles.util}>
+                  <NavUtils isMo={isMo} />
+              </ul>
+              <ul className={styles.moGnb}>
+                { subNavbar.map( ({id, category, link, subMenu} )  => (
+                  <GnbMenus key={id} category={category} link={link} subMenu={subMenu} />
+                ))}
+              </ul>
+            </div>
+            <div className={styles.dimmed}></div>
+          </>
+        }
       </div>
     </header>
   )
