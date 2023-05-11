@@ -4,6 +4,7 @@
     z-index: 1;
     top: 50%;
     left: 50%;
+    width: 100%;
     transform: translate(-50%, -50%);
     p{
       text-align: center;
@@ -46,5 +47,48 @@
       opacity: .9;
       object-fit: cover;
     }
+  }
+}
+
+
+@media all and (min-width:768px) and (max-width:1024px) {
+  .linkBanner{
+    .contextBox{
+      width: 80%;
+      p{
+        &.cate{
+          font-size: 1.4rem;
+        }
+        &.title{
+          font-size: 1.8rem;
+        }
+        &.desc{
+          font-size: 1.1rem;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (max-width:767px) {
+  .linkBanner{
+    .contextBox{
+      padding: 0 5%;
+      width: 100%;
+      p{
+        &.cate{
+          font-size: 1.2rem;
+        }
+        &.title{
+          font-size: 1.2rem;
+          letter-spacing: -1px;
+        }
+        &.desc{
+          font-size: 1rem;
+        }
+      }
+    }
+  
   }
 }
