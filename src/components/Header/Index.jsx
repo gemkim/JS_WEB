@@ -1,12 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom/dist';
+import React, { useState } from 'react';
 
 import styles from './Header.module.scss'
 import GnbMenus from './GnbMenus';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCartShopping, faPowerOff, faBars } from '@fortawesome/free-solid-svg-icons'
 import Logo from 'components/Logo';
+import NavUtils from 'components/NavUtils';
+import HambugerMenu from './HambugerMenu';
 
 const Header = ({isMo}) => {
   const subNavbar = [
@@ -62,6 +61,8 @@ const Header = ({isMo}) => {
     },
   ];
 
+  const [ isMoGnb, setIsMoGnb ] = useState(false)
+
   return(
     <header className={styles.header}>
       <div className={styles.container}>
@@ -78,16 +79,29 @@ const Header = ({isMo}) => {
             </nav>
           
             <div className={styles.utilWrap}>
-              <ul className={styles.util}>
-                <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='ir'>검색</span></button></li>
-                <li><Link to="cart"><FontAwesomeIcon icon={faCartShopping} /><span className='ir'>카트</span></Link></li>
-                <li><Link to="/login"><FontAwesomeIcon icon={faPowerOff} /><span className='ir'>로그인</span></Link></li>
+            <ul className={styles.util}>
+                <NavUtils />
               </ul>
             </div>
           </>
         }
-        { isMo && 
-          <button type='button' className={styles.hambuger}><FontAwesomeIcon icon={faBars} /><span className='ir'>전체메뉴 보기</span></button>
+        { isMo &&
+          <HambugerMenu />
+        }
+        { isMo && isMoGnb &&
+          <>
+            <div className={styles.moLnb}>
+              <ul className={styles.util}>
+                  <NavUtils isMo={isMo} />
+              </ul>
+              <ul className={styles.moGnb}>
+                { subNavbar.map( ({id, category, link, subMenu} )  => (
+                  <GnbMenus key={id} category={category} link={link} subMenu={subMenu} />
+                ))}
+              </ul>
+            </div>
+            <div className={styles.dimmed}></div>
+          </>
         }
       </div>
     </header>

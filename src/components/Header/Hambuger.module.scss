@@ -1,0 +1,50 @@
+.hambuger {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  .hambugerBar{
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #333333;
+    transform: rotate(0deg);
+    border-radius: 10px;
+    transition: all 300ms ease-in;
+    &:after, &:before{
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #333333;
+      position: absolute;
+      left: 0;
+      transform: rotate(0deg);
+      border-radius: 10px;
+      transition: all 300ms ease-in;
+    }
+    &:before {
+      content: "";
+      top: -10px;
+    }
+    &:after{
+      content: "";
+      bottom: -10px;
+    }
+  }
+  &.isOn{
+    .hambugerBar{
+      background: transparent;
+      transform: rotate(180deg);
+      &:after, &:before{
+        background: #b2111e;
+      }
+      &:after{
+        transform: rotate(45deg);
+        bottom: 0;
+      }
+      &:before{
+        transform: rotate(-45deg);
+        top: 0;
+      }
+  }
+}
+}
