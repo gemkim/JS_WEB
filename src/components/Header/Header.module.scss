@@ -12,8 +12,11 @@ $--header-height : 60px;
     align-items: center;
     max-width: 1480px;
     height: $--header-height;
+    h1{
+      flex-shrink: 0;
+    }
     .nav{
-      width: calc(100% - 350px);
+      width: clamp(380px, 48vw, 600px);
       .gnb{
         position: relative;
         display: flex;
@@ -23,7 +26,6 @@ $--header-height : 60px;
         > li{
           position: relative;
           flex-shrink: 0;
-          width: clamp(75px, 25%, 120px);
           > a{
             display: block;
             width: 100%;
@@ -88,14 +90,12 @@ $--header-height : 60px;
       }
     }
     .utilWrap{
-      width: 150px;
-      ul.util{
-        display: flex;
+      .util{
         li{
           margin-right: 10px;
           a, button{
             display: block;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
           }
           button{
             padding: 3px 0;
@@ -103,8 +103,65 @@ $--header-height : 60px;
         }
       }
     }
-    .hambuger{
-      color: #000;
+   
+  .moLnb{
+    position: absolute;
+    top: $--header-height + 1;
+    right: 0;
+    z-index: 2;
+    width: 100%;
+    background-color: #fff;
+    .util{
+      li{
+        width: 100%;
+        font-size: .8rem;
+        background-color: #ededed;
+        border-right: 1px solid #ddd;
+        &:last-child{
+          border-right: none;
+        }
+        a, button{
+          display: flex;
+          justify-content: center;
+          padding: 8px 0;
+          width: 100%;
+        }
+        svg{
+          display: block;
+          font-size: 1.1rem;
+        }
+      }
     }
+    .moGnb{
+      li{
+        padding: 10px 20px;
+        width: 100%;
+        flex-shrink: 0;
+        border-bottom: 1px solid #ddd;
+        a{
+          display: block;
+          .lnb{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .dimmed{
+    position: absolute;
+    top: $--header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: calc(100vh - $--header-height);
+    background-color: #00000050;
+  }
+  ul.util{
+    display: flex;
+    justify-content: space-between;
+    
+  }
   }
 }
