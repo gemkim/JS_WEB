@@ -8,10 +8,10 @@ const SideArrow = (props) => {
   return (
     <div className={styles.arrows}>
       <button className={styles.prev}>
-        <FontAwesomeIcon icon={faAngleLeft} /><span className='ir'>prev</span>
+        <FontAwesomeIcon icon={faAngleLeft} /><span className='srOnly'>prev</span>
       </button>
       <button className={styles.next}>
-        <FontAwesomeIcon icon={faAngleRight} /><span className='ir'>next</span>
+        <FontAwesomeIcon icon={faAngleRight} /><span className='srOnly'>next</span>
       </button>
     </div>
   )

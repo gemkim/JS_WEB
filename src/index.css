@@ -28,7 +28,7 @@ ol {
   list-style: none;
 }
 
-.ir{
+.srOnly{
   display: block;
   width: 0;
   height: 0;
