@@ -16,11 +16,45 @@
       .basicLogin{
         padding: 50px;
         border: 1px solid #888;
+        .formText{
+          margin-top: 5px;
+          padding: 12px 15px;
+          width: 100%;
+          display: block;
+          border: 1px solid #ddd;
+          &:last-child{
+            margin-top: 0;
+          }
+        }
+        .savedInfo{
+          display: flex;
+          align-items: center;
+          margin-top: 5px;
+          font-size: .8rem;
+          color: #888;
+        }
+        .btnLogin{
+          margin-top: 5px;
+          width: 100%;
+          padding: 10px 20px;
+          text-align: center;
+          border: 1px solid #ddd;
+        }
+        .joinfind{
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+          a {
+            font-size: .8rem;
+            color: #888;
+          }
+        }
       }
       .socialArea{
         padding: 30px 50px;
         margin-top: 10px;
         border: 1px solid #888;
+       
         h3{
           font-weight: bold;
           font-size: 1rem;
