@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
 import styles from './Home.module.scss'
 //components
@@ -20,6 +21,16 @@ const Home = (props) => {
     {id: 3, imgURL: 'images/prd_03.jpg'},
     {id: 4, imgURL: 'images/prd_04.jpg'}
   ]
+
+
+  useEffect(() => {
+
+      axios.get('/goods/list?productName')
+      .then(response=> console.log(response))
+      .catch(error => console.log(error))
+      
+  }, [])
+
   return (
     <div className={styles.main}>
       <section className={styles.mainBanner}>
