@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gemkim/JS_WEB.git/static/css/main.f054c88d.css",
-    "main.js": "/gemkim/JS_WEB.git/static/js/main.fe7740a6.js",
+    "main.css": "/gemkim/JS_WEB.git/static/css/main.1413d35b.css",
+    "main.js": "/gemkim/JS_WEB.git/static/js/main.156ff563.js",
     "static/media/banner_01.jpg": "/gemkim/JS_WEB.git/static/media/banner_01.60451bf3c33e4e5d8ae6.jpg",
     "static/media/banner_03.jpg": "/gemkim/JS_WEB.git/static/media/banner_03.e56a73cd2f675a46c62e.jpg",
     "static/media/banner_02.jpg": "/gemkim/JS_WEB.git/static/media/banner_02.22d778a19aac5f48376d.jpg",
@@ -10,11 +10,11 @@
     "static/media/prd_03.jpg": "/gemkim/JS_WEB.git/static/media/prd_03.6096cf00119e20e8a3e7.jpg",
     "static/media/prd_01.jpg": "/gemkim/JS_WEB.git/static/media/prd_01.0feddea001cc85e32098.jpg",
     "index.html": "/gemkim/JS_WEB.git/index.html",
-    "main.f054c88d.css.map": "/gemkim/JS_WEB.git/static/css/main.f054c88d.css.map",
-    "main.fe7740a6.js.map": "/gemkim/JS_WEB.git/static/js/main.fe7740a6.js.map"
+    "main.1413d35b.css.map": "/gemkim/JS_WEB.git/static/css/main.1413d35b.css.map",
+    "main.156ff563.js.map": "/gemkim/JS_WEB.git/static/js/main.156ff563.js.map"
   },
   "entrypoints": [
-    "static/css/main.f054c88d.css",
-    "static/js/main.fe7740a6.js"
+    "static/css/main.1413d35b.css",
+    "static/js/main.156ff563.js"
   ]
 }
