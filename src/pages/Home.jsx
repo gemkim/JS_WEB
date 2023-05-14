@@ -4,7 +4,7 @@ import styles from './Home.module.scss'
 //components
 import PrdLists from 'components/PrdLists';
 import TabMenus from 'components/TabMenus';
-import SlideBanner from 'components/SlideBanner';
+import SwiperComponent from 'components/SlideBanner';
 
 // import test from 'asset/images/banner_01.jpg'
 
@@ -23,7 +23,7 @@ const Home = (props) => {
   return (
     <div className={styles.main}>
       <section className={styles.mainBanner}>
-        <SlideBanner images={bannerImages} />
+        <SwiperComponent images={bannerImages} /> 
       </section>
       <section className={styles.tabWrap}>
         <div className={styles.container}>

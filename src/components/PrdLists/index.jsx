@@ -8,7 +8,7 @@ const PrdLists = ({images}) => {
     <div className={styles.prdWrap}>
       <ul className={styles.lists}>
       { images.map(({id, imgURL})=>(
-         <li>
+         <li key={id}>
           <Link to="">
             <img src={require(`asset/${imgURL}`)} alt={`배너이미지 ${id}`} />
           </Link>
