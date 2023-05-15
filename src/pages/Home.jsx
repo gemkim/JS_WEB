@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import styles from './Home.module.scss'
@@ -10,6 +10,9 @@ import SwiperComponent from 'components/SlideBanner';
 // import test from 'asset/images/banner_01.jpg'
 
 const Home = (props) => {
+
+  const [ prdData, setPrdData ] = useState([])
+
   const bannerImages = [
     {id: 1, imgURL: 'images/banner_01.jpg'},
     {id: 2, imgURL: 'images/banner_02.jpg'},
@@ -22,15 +25,23 @@ const Home = (props) => {
     {id: 4, imgURL: 'images/prd_04.jpg'}
   ]
 
+ 
 
-  useEffect(() => {
+   useEffect(() => {
+    async function getPrdData(){
+      return await axios.get('/goods/list?productName')
+       .then(response=> response.data)
+       .then( res => res.content )
+       .catch(error => console.log(error))
+     }
+     
+    getPrdData().then(function(data) {
+      setPrdData(data)
+     });
+  
+   }, [])
 
-      axios.get('/goods/list?productName')
-      .then(response=> console.log(response))
-      .catch(error => console.log(error))
-      
-  }, [])
-
+   console.log(prdData);
   return (
     <div className={styles.main}>
       <section className={styles.mainBanner}>
@@ -42,14 +53,14 @@ const Home = (props) => {
             <TabMenus />
           </div>
           <div className={styles.tabRight}>
-            <PrdLists images={prdImages} />
+            <PrdLists prdData={prdData} images={prdImages} />
           </div>
         </div>
       </section>
       <section className={styles.newPrd}>
         <h2 className={styles.title}>New Arrived</h2>
         <div className={styles.container}>
-          <PrdLists images={prdImages} />
+          <PrdLists prdData={prdData} images={prdImages} />
         </div>
       </section>
     </div>
