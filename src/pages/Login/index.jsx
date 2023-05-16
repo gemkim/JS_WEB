@@ -15,8 +15,8 @@ const Login = (props) => {
           <form>
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
-              <InsertTextForm type={'text'} guideTxt={'아이디'} />
-              <InsertTextForm type={'password'} guideTxt={'패스워드'} />
+              <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
+              <InsertTextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
               <div className={styles.savedInfo}>
                 <CheckBox text={'아이디 저장'} />
               </div>

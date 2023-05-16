@@ -12,11 +12,11 @@ const JoinUs = (props) => {
         <div className={styles.loginArea}>
           <form>
             <div className={styles.formBox}>
-              <InsertTextForm guideTxt={'아이디'} type={'text'} />
-              <InsertTextForm guideTxt={'비밀번호'} type={'password'} />
-              <InsertTextForm guideTxt={'비밀번호 확인'} type={'password'} />
-              <InsertTextForm guideTxt={'이름'} type={'text'} />
-              <InsertTextForm guideTxt={'핸드폰'} type={'text'} />
+              <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
+              <InsertTextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
+              <InsertTextForm formType="pwConfirm" guideTxt={'비밀번호 확인'} type={'password'} />
+              <InsertTextForm formType="userName" guideTxt={'이름'} type={'text'} />
+              <InsertTextForm formType="userPhone" guideTxt={'핸드폰'} type={'text'} />
               {/* 젠더 */}
               <div className={styles.gender}>
                 <CheckBox val={'check1'} text={'여자'} />
@@ -24,7 +24,7 @@ const JoinUs = (props) => {
               </div>
               {/* select box */}
               <div className={styles.emailform}>
-                <InsertTextForm guideTxt={'이메일'} type={'text'} />
+                <InsertTextForm formType="userMail" guideTxt={'이메일'} type={'text'} />
                 <select name="" id="">
                   <option value="naver.com">naver.com</option>
                   <option value="gmail.com">gmail.com</option>
@@ -34,7 +34,7 @@ const JoinUs = (props) => {
               </div>
               {/* 주소인증 */}
               <div className={styles.address}>
-                <InsertTextForm guideTxt={'주소'} type={'text'} />
+                <InsertTextForm formType="userAddress" guideTxt={'주소'} type={'text'} />
                 <Button type={'button'} text={'주소'} size={'btnS'} state={'white'} />
               </div>
             </div>
