@@ -8,16 +8,16 @@ const PrdLists = ({prdData, images}) => {
   return (
     <div className={styles.prdWrap}>
       <ul className={styles.lists}>
-      { prdData.map(({content, costPrice, image, kind, no, productName, profitPrice, salesPrice})=>(
+      { prdData.map(({content, limitedTimeOffer, costPrice, image, kind, no, productName, profitPrice, salesPrice})=>(
          <li key={no}>
           <Link to="">
-            <img src={require(`asset/images/prd_01.jpg`)} alt={`배너이미지 test`} />
+            <img src={image} alt={`배너이미지 test`} />
           </Link>
           <div className={styles.details}>
             <p className={styles.title}>{productName}</p>
             <p className={styles.price}>{profitPrice} <span className={styles.before}>{salesPrice}</span></p>
             <div className={styles.desc}>
-              <span className={styles.event}>[5/9(화) 2PM까지 기간한정특가!]</span>
+              <span className={styles.event}>{limitedTimeOffer}</span>
               <p className={styles.text}>{content}</p>
             </div>
           </div>
