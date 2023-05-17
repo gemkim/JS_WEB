@@ -16,7 +16,7 @@ const JoinUs = (props) => {
               <InsertTextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
               <InsertTextForm formType="pwConfirm" guideTxt={'비밀번호 확인'} type={'password'} />
               <InsertTextForm formType="userName" guideTxt={'이름'} type={'text'} />
-              <InsertTextForm formType="userPhone" guideTxt={'핸드폰'} type={'text'} />
+              <InsertTextForm formType="userPhone" guideTxt={'01012345678'} type={'text'} />
               {/* 젠더 */}
               <div className={styles.gender}>
                 <CheckBox val={'check1'} text={'여자'} />
@@ -25,12 +25,12 @@ const JoinUs = (props) => {
               {/* select box */}
               <div className={styles.emailform}>
                 <InsertTextForm formType="userMail" guideTxt={'이메일'} type={'text'} />
-                <select name="" id="">
-                  <option value="naver.com">naver.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="hanmail.com">hanmail.com</option>
+                {/* <select name="" id="">
+                  <option value="@naver.com">@naver.com</option>
+                  <option value="@gmail.com">@gmail.com</option>
+                  <option value="@hanmail.com">@hanmail.com</option>
                   <option value="직접입력">직접입력</option>
-                </select>
+                </select> */}
               </div>
               {/* 주소인증 */}
               <div className={styles.address}>

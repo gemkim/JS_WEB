@@ -3,7 +3,16 @@
     padding: 10px 15px;
     border-bottom: 1px solid #ddd;
   }
-
+  .warningMsg{
+    padding: 5px 15px;
+    font-size: 0.75rem;
+    &.success{
+      color: #4c93f5;
+    }
+    &.error{
+      color: #db2525;
+    }
+}
   .chkBox{
     display: flex;
     align-items: center;
