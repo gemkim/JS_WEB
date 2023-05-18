@@ -4,6 +4,7 @@ import InsertTextForm from 'components/InputForm/InsertTextForm';
 import Button from 'components/Button';
 import CheckBox from 'components/InputForm/CheckBox';
 import AddressPostcode from 'components/AddressPostcode';
+import PasswordCheckForm from 'components/InputForm/PasswordCheckForm';
 
 const JoinUs = (props) => {
   const [isPopup, setIsPopup] = useState(false)
@@ -22,8 +23,7 @@ const JoinUs = (props) => {
           <form onSubmit={onSubmitHandler}>
             <div className={styles.formBox}>
               <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
-              <InsertTextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
-              <InsertTextForm formType="pwConfirm" guideTxt={'비밀번호 확인'} type={'password'} />
+              <PasswordCheckForm />
               <InsertTextForm formType="userName" guideTxt={'이름'} type={'text'} />
               <InsertTextForm formType="userPhone" guideTxt={'01012345678'} type={'text'} />
               {/* 젠더 */}
