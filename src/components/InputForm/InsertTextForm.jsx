@@ -60,9 +60,6 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
    }
   };
   
-
-  const onChangeUserAddress = (e) => {};
-
   return(
    <>
     {/* userId */}
@@ -110,16 +107,7 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
           )}
         </>
       }
-      {/* userAddress */}
-      { formType === 'userAddress' && 
-        <input 
-          className={styles.textform} 
-          id="input1" 
-          type={type} 
-          placeholder={guideTxt}
-          onChange={onChangeUserAddress}
-        /> 
-      }
+
    </>
   
   )

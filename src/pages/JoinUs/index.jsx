@@ -6,13 +6,11 @@ import CheckBox from 'components/InputForm/CheckBox';
 import AddressPostcode from 'components/AddressPostcode';
 import PasswordCheckForm from 'components/InputForm/PasswordCheckForm';
 import EmailForm from 'components/InputForm/EmailForm';
+import AddressForm from 'components/InputForm/AddressForm';
 
 const JoinUs = (props) => {
   const [isPopup, setIsPopup] = useState(false)
 
-  const handleOpenPopup = (e) => {
-    setIsPopup(!isPopup)
-  }
   const onSubmitHandler = () => {
   }
 
@@ -38,8 +36,7 @@ const JoinUs = (props) => {
               </div>
               {/* 주소인증 */}
               <div className={styles.address}>
-                <InsertTextForm formType="userAddress" guideTxt={'주소'} type={'text'} />
-                <Button type={'button'} text={'주소'} size={'btnM'} state={'white'} onClick={handleOpenPopup} />
+                <AddressForm isPopup={isPopup} setIsPopup={setIsPopup} />
               </div>
             </div>
             {/* 동의하기 */}
