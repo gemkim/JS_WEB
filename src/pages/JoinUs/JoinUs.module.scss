@@ -27,15 +27,14 @@
         }
         .emailform{
           display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
           align-items: center;
-          .at{
-            margin: 0 10px;
-            display: inline-block;
+          > input{
+            width: 52%;
           }
-          .emailLists{
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 5spx;
+          > select{
+            width:40%;
           }
         }
         .gender{
