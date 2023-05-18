@@ -5,6 +5,7 @@ import Button from 'components/Button';
 import CheckBox from 'components/InputForm/CheckBox';
 import AddressPostcode from 'components/AddressPostcode';
 import PasswordCheckForm from 'components/InputForm/PasswordCheckForm';
+import EmailForm from 'components/InputForm/EmailForm';
 
 const JoinUs = (props) => {
   const [isPopup, setIsPopup] = useState(false)
@@ -33,14 +34,7 @@ const JoinUs = (props) => {
               </div>
               {/* select box */}
               <div className={styles.emailform}>
-                <InsertTextForm formType="userMail" guideTxt={'이메일'} type={'text'} />
-                <span className={styles.at}>@</span>
-                <select className={styles.emailLists} name="" id="">
-                  <option value="naver.com">naver.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="hanmail.com">hanmail.com</option>
-                  <option value="직접입력">직접입력</option>
-                </select>
+                <EmailForm />
               </div>
               {/* 주소인증 */}
               <div className={styles.address}>

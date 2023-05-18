@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
 const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
-  // 초기값 세팅 - 아이디, 닉네임, 이메일, 전화번호, 생년월일
+  // 초기값 세팅 - 아이디, 닉네임, 전화번호, 생년월일
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   // const [birth, setBirth] = useState('');
 
@@ -13,14 +12,12 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
   const [idMessage, setIdMessage] = useState('');
   const [nameMessage, setNameMessage] = useState('');
   const [phoneMessage, setPhoneMessage] = useState('');
-  const [emailMessage, setEmailMessage] = useState('');
   //  const [birthMessage, setBirthMessage] = useState('');
 
   // 유효성 검사
   const [isId, setIsId] = useState(true)
   const [isName, setIsName] = useState(true)
   const [isPhone, setIsPhone] = useState(true)
-  const [isEmail, setIsEmail] = useState(true)
 
   const onChangeUserID = (e) => {
     const currentId = e.target.value;
@@ -62,20 +59,7 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
      setIsPhone(true)
    }
   };
-
-  const onChangeUserMail = (e) => {
-    const currentEmail = e.target.value;
-    setEmail(currentEmail);
-    const emailRegExp =
-    /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    if (!emailRegExp.test(currentEmail)) {
-      setEmailMessage("이메일의 형식이 올바르지 않습니다!");
-      setIsEmail(false)
-    } else {
-      setEmailMessage("사용 가능한 이메일 입니다.");
-      setIsEmail(true)
-    }
-  };
+  
 
   const onChangeUserAddress = (e) => {};
 
@@ -123,21 +107,6 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
           /> 
           { phone.length > 0 && (
             <p className={ `${styles.warningMsg} ${ isPhone ? styles.success : styles.error }` }>{phoneMessage}</p>
-          )}
-        </>
-      }
-      {/* userMail */}
-      { formType === 'userMail' && 
-        <>
-          <input 
-            className={styles.textform} 
-            id="input1" 
-            type={type} 
-            placeholder={guideTxt}
-            onChange={onChangeUserMail}
-          /> 
-          { email.length > 0 && (
-            <p className={ `${styles.warningMsg} ${ isEmail ? styles.success : styles.error }` }>{emailMessage}</p>
           )}
         </>
       }
