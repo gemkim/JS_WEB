@@ -27,6 +27,16 @@
         }
         .emailform{
           display: flex;
+          align-items: center;
+          .at{
+            margin: 0 10px;
+            display: inline-block;
+          }
+          .emailLists{
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5spx;
+          }
         }
         .gender{
           display: flex;
@@ -37,7 +47,10 @@
         }
         .address{
           display: flex;
-          flex-shrink: 0;
+          button{
+            flex-shrink: 0;
+            margin-left: 15px;
+          }
         }
       }
     }

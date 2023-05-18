@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
 const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
@@ -45,7 +45,7 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
     }
   };
 
-  const onChangePw = useCallback((e) => {
+  const onChangePw = (e) => {
     const currentPassword = e.target.value;
     setPassword(currentPassword);
     const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
@@ -58,19 +58,20 @@ const InsertTextForm = ({formType, guideTxt, type = 'text'}) => {
       setPasswordMessage("안전한 비밀번호 입니다.");
       setIsPassword(true)
     }
-  }, [])
+  }
 
-  const onChangePwConfirm = useCallback((e) => {
+  const onChangePwConfirm = (e) => {
     const currentPasswordConfirm = e.target.value;
     setPasswordConfirm(currentPasswordConfirm)
-    if ( password !== passwordConfirm) {
+    console.log(currentPasswordConfirm);
+    if ( currentPasswordConfirm !== password) {
       setPasswordConfirmMessage("떼잉~ 비밀번호가 똑같지 않아요!");
       setIsPasswordConfirm(false)
     } else {
       setPasswordConfirmMessage("똑같은 비밀번호를 입력했습니다.");
       setIsPasswordConfirm(true)
     }
-  }, [password])
+  }
 
   const onChangeUserName = (e) => {
     const currentName = e.target.value
