@@ -11,6 +11,8 @@ import AgreeContents from 'components/AgreeContents';
 
 const JoinUs = (props) => {
   const [isPopup, setIsPopup] = useState(false)
+  const [ address, setAddress ] = useState('')
+  const [ zoneCode, setZoneCode ] = useState('')
 
   const agreeData = [
     { id: "termsOfService",
@@ -58,7 +60,7 @@ const JoinUs = (props) => {
               </div>
               {/* 주소인증 */}
               <div className={styles.address}>
-                <AddressForm isPopup={isPopup} setIsPopup={setIsPopup} />
+                <AddressForm address={address} zoneCode={zoneCode} isPopup={isPopup} setIsPopup={setIsPopup} />
               </div>
             </div>
             {/* 동의하기 */}
@@ -73,7 +75,7 @@ const JoinUs = (props) => {
               <Button type={'button'} text={'취소'} size={'btnL'} state={'cancel'} />
               <Button type={'submit'} text={'확인'}  size={'btnL'} state={'success'} />
             </div>
-            { isPopup && <AddressPostcode isPopup={isPopup} setIsPopup={setIsPopup} /> }
+            { isPopup && <AddressPostcode isPopup={isPopup} setIsPopup={setIsPopup} setZoneCode={setZoneCode} setAddress={setAddress} /> }
           </form>
         </div>
       </div>
