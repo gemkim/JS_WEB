@@ -39,13 +39,12 @@ const Footer = (props) => {
           </div>
           <div className={styles.bankInfo}>
             <p className={styles.title}>Bank Info</p>
+            <select name="" id="">
+              <option value="우리은행 1005-123-456789">우리은행 1005-123-456789</option>
+              <option value="국민은행 1005-123-456789">국민은행 1005-123-456789</option>
+              <option value="농협 1005-123-456789">농협 1005-123-456789</option>
+            </select>
             <dl className={styles.bank}>
-              <dt>우리은행</dt>
-              <dd>1005-123-456789</dd>
-              <dt>국민은행</dt>
-              <dd>1005-123-456789</dd>
-              <dt>농&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;협</dt>
-              <dd>1005-123-456789</dd>
               <dt>(주)브랜드엑스코퍼레이션</dt>
               <dd>&nbsp;</dd>
             </dl>
