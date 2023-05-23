@@ -8,7 +8,7 @@ import EmailForm from 'components/InputForm/EmailForm';
 import AddressForm from 'components/InputForm/AddressForm';
 import AgreeContents from 'components/AgreeContents';
 import RadioButton from 'components/InputForm/RadioButton';
-import { uploadNewMember } from 'api/postServer';
+import { uploadNewMember } from 'api/uploaMemberInfo';
 
 const JoinUs = (props) => {
   const [user, setUser] = useState([])

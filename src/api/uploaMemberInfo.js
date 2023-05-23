@@ -1,6 +1,5 @@
 
 export async function uploadNewMember(userInfo){
-  console.log(userInfo);
   const data = new FormData();
   data.append("file", userInfo)
   data.append("upload_preset", process.env.REACT_APP_NARS_PRESET);
