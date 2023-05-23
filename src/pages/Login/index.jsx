@@ -1,16 +1,24 @@
 import React, { useContext, useEffect } from 'react';
-import styles from './Login.module.scss'
-// import InsertTextForm from 'components/InputForm/InsertTextForm';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import CheckBox from 'components/InputForm/CheckBox';
-import Button from 'components/Button';
+
 import { login, logout, onUserStateChange } from 'api/firebase';
 import { ContextStore } from 'context/store';
-import TextForm from 'components/InputForm/TextForm';
+import { uploadLoginInfo } from 'api/uploadLogInfo';
+
+import CheckBox from 'components/InputForm/CheckBox';
+import LoginInput from 'components/login/LoginInput';
+import LoginButton from 'components/Button/LoginButton';
+
+import styles from './Login.module.scss'
 
 const Login = (props) => {
-  // const [user, setUser] = useState();
-  
+  const {
+    register,
+    // handleSubmit,
+    formState: { errors, isValid },
+  } = useForm();
+
   const contextValue = useContext(ContextStore)
 
   useEffect(() => {
@@ -25,13 +33,29 @@ const Login = (props) => {
           <form>
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
-              <TextForm formType="userId" guideTxt={'아이디'} type={'text'} />
-              <TextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
+              <LoginInput 
+                register={register('id', {
+                  required: '아이디를 입력해주세요.',
+                })}
+                type="text"
+                label="아이디"
+                htmlFor="id"
+                errorMessage={errors?.id?.message}
+              />
+              <LoginInput
+                register={register('password', {
+                  required: '비밀번호를 입려해주세요.',
+                })}
+                type="password"
+                label="비밀번호"
+                htmlFor="password"
+                errorMessage={errors?.password?.message}
+              />
               <div className={styles.savedInfo}>
                 <CheckBox text={'아이디 저장'} />
               </div>
              <div className={styles.btnWrap}>
-                <Button type={'button'} text={'로그인'} size={'btnL'} state={'success'} />
+              <LoginButton size={'btnL'} state={'success'} title="로그인" isValid={isValid} />
              </div>
               <div className={styles.joinfind}>
                 <Link to="">아이디/비밀번호 찾기</Link>
@@ -46,8 +70,8 @@ const Login = (props) => {
                   <Link to="">카카오 로그인</Link>
                 </li>
                 <li>
-                  {!contextValue.user[0] && <Link to="" onClick={login}>구글 로그인</Link>}
-                  { contextValue.user[0] && <Link to="" onClick={logout}>구글 로그아웃</Link> }
+                  {!contextValue.user[0] && <Link to="" onSubmit={login}>구글 로그인</Link>}
+                  { contextValue.user[0] && <Link to="" onSubmit={logout}>구글 로그아웃</Link> }
                 </li>
               </ul>
             </div>

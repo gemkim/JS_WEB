@@ -49,9 +49,9 @@ const JoinUs = (props) => {
     e.preventDefault();
     setUser([
       ...user, {
-        test1 : address,
-        test2 : zoneCode,
-        test3 : zoneCode,
+        member_id : address,
+        password : zoneCode,
+        admin_yn : zoneCode,
       },
     ])
   }
