@@ -27,7 +27,7 @@ const AgreeContents = ({agreeData, onSubmitHandler}) => {
   };
   
   function agreeNessesaryChecked() {
-    const { termsOfService, privacyPolicy, allowPromotions } = isChecked;
+    const { termsOfService, privacyPolicy } = isChecked;
     console.log(termsOfService);
     if( termsOfService && privacyPolicy ) {
     } else {

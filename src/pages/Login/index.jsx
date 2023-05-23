@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import styles from './Login.module.scss'
 // import InsertTextForm from 'components/InputForm/InsertTextForm';
 import { Link } from 'react-router-dom';
-import InsertTextForm from 'components/InputForm/InsertTextForm';
 import CheckBox from 'components/InputForm/CheckBox';
 import Button from 'components/Button';
 import { login, logout, onUserStateChange } from 'api/firebase';

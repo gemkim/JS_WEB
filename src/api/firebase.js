@@ -23,6 +23,7 @@ export function login(){
   signInWithPopup(auth, provider)
   .then((result) => {
     const user = result.user;
+    console.log(user);
     return user
   }).catch((error) => {
     console.log(error);

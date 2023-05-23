@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.scss'
 import Logo from 'components/Logo';
+import { Link } from 'react-router-dom';
 
 const Footer = (props) => {
   return (
@@ -9,11 +10,11 @@ const Footer = (props) => {
         <section className={styles.left}>
           <Logo color={'#888'} />
           <ul className={styles.ftMenu}>
-            <li><a href="#">브랜드</a></li>
-            <li><a href="#">회사소개</a></li>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li><a href="#">고객센터</a></li>
+            <li><Link to="#">브랜드</Link></li>
+            <li><Link to="#">회사소개</Link></li>
+            <li><Link to="#">이용약관</Link></li>
+            <li><Link to="#">개인정보처리방침</Link></li>
+            <li><Link to="#">고객센터</Link></li>
           </ul>
           <div className={styles.info}>
             <p>
