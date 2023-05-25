@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { login, logout, onUserStateChange } from 'api/firebase';
+import { login, logout, onUserStateChange, postUserInfo } from 'api/firebase';
 import { ContextStore } from 'context/store';
 import { uploadLoginInfo } from 'api/uploadLogInfo';
 
@@ -40,7 +40,7 @@ const Login = (props) => {
         password: uid
       };
       
-      uploadLoginInfo(loginData)
+      postUserInfo(loginData)
     }
     
   },[contextValue])
@@ -59,8 +59,8 @@ const Login = (props) => {
       username: username,
       password: password
     };
-    console.log(loginData);
-    uploadLoginInfo(loginData)
+    postUserInfo(loginData)
+    // uploadLoginInfo(loginData)
   };
 
   return(
