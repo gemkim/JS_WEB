@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { login, logout, onUserStateChange, postUserInfo } from 'api/firebase';
+import { login, logout, onUserStateChange } from 'api/firebase';
 import { ContextStore } from 'context/store';
-import { uploadLoginInfo } from 'api/uploadLogInfo';
+import { checkMemberInfo } from 'api/checkMemberInfo';
 
 import CheckBox from 'components/InputForm/CheckBox';
 import LoginInput from 'components/login/LoginInput';
@@ -15,6 +15,10 @@ import styles from './Login.module.scss'
 const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const test = {
+    "memberId": "mis",
+    "password": "23"
+  }
 
   const {
     register,
@@ -40,7 +44,7 @@ const Login = (props) => {
         password: uid
       };
       
-      postUserInfo(loginData)
+      checkMemberInfo(test)
     }
     
   },[contextValue])
@@ -59,7 +63,7 @@ const Login = (props) => {
       username: username,
       password: password
     };
-    postUserInfo(loginData)
+    checkMemberInfo(test)
     // uploadLoginInfo(loginData)
   };
 

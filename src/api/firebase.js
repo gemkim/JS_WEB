@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, set, ref } from "firebase/database";
-import {v4 as uuid} from 'uuid';
 
 // REACT_APP_FIREBASE_API_KEY=AIzaSyCsOALiRfG7-_mnNTGo0C6LdlEGPoQ5QfI
 // REACT_APP_FIREBASE_AUTH_DOMAIN=login-99bcf.firebaseapp.com
@@ -17,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
-const database = getDatabase(app);
 provider.setCustomParameters({
   prompt: 'select_account',
 })
@@ -46,15 +43,4 @@ export function onUserStateChange(callback){
 onAuthStateChanged(auth, (user) => {
   callback(user)
 });
-};
-
-export async function postUserInfo(userInfo){
-  const id = uuid();
-  console.log(userInfo);
-  console.log(database);
-  return set(ref(database, `products/${id}`), {
-    ...userInfo, 
-    member_id : userInfo.username,
-    password : userInfo.password,
-  });
 };
