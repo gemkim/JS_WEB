@@ -9,6 +9,9 @@ import AddressForm from 'components/InputForm/AddressForm';
 import AgreeContents from 'components/AgreeContents';
 import RadioButton from 'components/InputForm/RadioButton';
 import { uploadNewMember } from 'api/uploaMemberInfo';
+import UserIdForm from 'components/InputForm/UserIdForm';
+import UserNameForm from 'components/InputForm/UserNameForm';
+import UserPhoneForm from 'components/InputForm/InsertTextForm';
 
 const JoinUs = (props) => {
   const [user, setUser] = useState([])
@@ -71,10 +74,10 @@ const JoinUs = (props) => {
         <div className={styles.loginArea}>
           <form  method="post" onSubmit={onSubmitHandler}>
             <div className={styles.formBox}>
-              <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
-              <PasswordCheckForm />
-              <InsertTextForm formType="userName" guideTxt={'이름'} type={'text'} />
-              <InsertTextForm formType="userPhone" guideTxt={'01012345678'} type={'text'} />
+              <UserIdForm guideTxt={'아이디'} />  {/* 아이디 */}
+              <PasswordCheckForm />  {/* 비밀번호/비밀번호 체크 */}
+              <UserNameForm guideTxt={'이름'} /> {/* 이름 */}
+              <UserPhoneForm guideTxt={'01012345678'} />  {/* 연락처 */}
               {/* 젠더 */}
               <div className={styles.gender}>
                 <RadioButton name="gender" value="woman" defaultChecked onSelectGender={onSelectGender}>
@@ -89,9 +92,7 @@ const JoinUs = (props) => {
                 <EmailForm />
               </div>
               {/* 주소인증 */}
-              <div className={styles.address}>
-                <AddressForm address={address} zoneCode={zoneCode} isPopup={isPopup} setIsPopup={setIsPopup} />
-              </div>
+              <AddressForm address={address} setAddress={setAddress} zoneCode={zoneCode} setZoneCode={setZoneCode} />
             </div>
             {/* 동의하기 */}
             <div className={styles.agreeWrap}>
@@ -105,7 +106,7 @@ const JoinUs = (props) => {
               <Button type={'button'} text={'취소'} size={'btnL'} state={'cancel'} />
               <Button type={'submit'} text={'확인'}  size={'btnL'} state={'success'} />
             </div>
-            { isPopup && <AddressPostcode isPopup={isPopup} setIsPopup={setIsPopup} setZoneCode={setZoneCode} setAddress={setAddress} /> }
+            {/* { isPopup && <AddressPostcode isPopup={isPopup} setIsPopup={setIsPopup} setZoneCode={setZoneCode} setAddress={setAddress} /> } */}
           </form>
         </div>
       </div>
