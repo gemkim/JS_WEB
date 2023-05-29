@@ -1,36 +1,40 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const UserNameForm = ({ guideTxt }) => {
+const UserNameForm = ({ name, guideTxt, changeText }) => {
   // 초기값 세팅 - 네임
-  const [name, setName] = useState('');
+  const [userName, setUserName] = useState('');
   // 오류메세지 상태 저장
   const [nameMessage, setNameMessage] = useState('');
   // 유효성 검사
-  const [isName, setIsName] = useState(true)
+  const [isUserName, setIsUserName] = useState(true)
 
   const onChangeUserName = (e) => {
     const currentName = e.target.value
-    setName(currentName);
+    setUserName(currentName);
     if (currentName.length < 2 || currentName.length > 5) {
       setNameMessage("닉네임은 2글자 이상 5글자 이하로 입력해주세요!");
-      setIsName(false)
+      setIsUserName(false)
     } else {
       setNameMessage("사용가능한 닉네임 입니다.");
-      setIsName(true)
+      setIsUserName(true)
     }
   };
 
   return(
     <>
-       <input 
+       <input
           className={styles.textform} 
-          id="input1" 
+          id={name} 
+          name={name}
           placeholder={guideTxt}
-          onChange={onChangeUserName}
+          onChange={ e => {
+            onChangeUserName(e)
+            changeText(e)
+          }}
         /> 
-        { name.length > 0 && (
-          <p className={ `${styles.warningMsg} ${ isName ? styles.success : styles.error }` }>{nameMessage}</p>
+        { userName.length > 0 && (
+          <p className={ `${styles.warningMsg} ${ isUserName ? styles.success : styles.error }` }>{nameMessage}</p>
         )}
     </>
   )

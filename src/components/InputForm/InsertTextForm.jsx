@@ -1,42 +1,45 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const UserPhoneForm = ({formType, guideTxt, type = 'text'}) => {
-  // 초기값 세팅 - 아이디, 닉네임, 전화번호, 생년월일
-  const [phone, setPhone] = useState('');
+const UserPhoneForm = ({ name, guideTxt, changeText }) => {
+  // 초기값 세팅 - 전화번호
+  const [userPhone, setUserPhone] = useState('');
   // 오류메세지 상태 저장
   const [phoneMessage, setPhoneMessage] = useState('');
   // 유효성 검사
-  const [isPhone, setIsPhone] = useState(true)
+  const [isUserPhone, setIsUserPhone] = useState(true)
 
   const onChangeUserPhone = (e) => {
     const currentPhone = e.target.value;
-   setPhone(currentPhone);
-   const phoneRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    setUserPhone(currentPhone);
+    const phoneRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
-   if (!phoneRegExp.test(currentPhone)) {
-     setPhoneMessage("올바른 형식이 아닙니다!");
-     setIsPhone(false)
-   } else {
-     setPhoneMessage("사용 가능한 번호입니다:-)");
-     setIsPhone(true)
-   }
+    if (!phoneRegExp.test(currentPhone)) {
+      setPhoneMessage("올바른 형식이 아닙니다!");
+      setIsUserPhone(false)
+    } else {
+      setPhoneMessage("사용 가능한 번호입니다:-)");
+      setIsUserPhone(true)
+    }
   };
   
   return(
     <>
       <input 
         className={styles.textform} 
-        id="input1" 
-        type={type} 
+        id={name}
+        name={name}
+        type='text'
         placeholder={guideTxt}
-        onChange={onChangeUserPhone}
+        onChange={ e => {
+          onChangeUserPhone(e)
+          changeText(e)
+        }}
       /> 
-      { phone.length > 0 && (
-        <p className={ `${styles.warningMsg} ${ isPhone ? styles.success : styles.error }` }>{phoneMessage}</p>
+      { userPhone.length > 0 && (
+        <p className={ `${styles.warningMsg} ${ isUserPhone ? styles.success : styles.error }` }>{phoneMessage}</p>
       )}
     </>
-  
   )
 };
 

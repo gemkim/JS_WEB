@@ -4,6 +4,7 @@ import NotFound from 'pages/NotFound';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
+import ForgotAccount from 'pages/ForgotAccount';
 
 
 const router = createBrowserRouter([
@@ -19,10 +20,15 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+        ForgotAccount
       },
       {
         path: 'join-us',
         element: <JoinUs />,
+      },
+      {
+        path: 'forgot-account',
+        element: <ForgotAccount />,
       },
     ],
   },

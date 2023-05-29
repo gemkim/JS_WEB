@@ -1,40 +1,41 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const UserIdForm = ({ guideTxt }) => {
-   // 초기값 세팅 - 아이디
-  const [id, setId] = useState('');
-  // 오류메세지 상태 저장
-  const [idMessage, setIdMessage] = useState('');
- // 유효성 검사
-  const [isId, setIsId] = useState(true)
+const UserIdForm = ({ name, guideTxt, changeText }) => {
+  const [userId, setUserId] = useState(''); // 초기값 세팅 - 아이디
+  const [idMessage, setIdMessage] = useState(''); // 오류메세지 상태 저장
+  const [isUserId, setIsUserId] = useState(true); // 유효성 검사
   
-  const onChangeUserID = (e) => {
+  const handleValid = (e) => {
+    const idRegExp = /^[a-zA-z0-9]{4,12}$/;    //공백없는 숫자와 영문자 대소문자 4-12글자
+
     const currentId = e.target.value;
-    setId(currentId);
-    //공백없는 숫자와 영문자 대소문자 4-12글자
-    const idRegExp = /^[a-zA-z0-9]{4,12}$/;
+    setUserId(currentId);
 
     if (!idRegExp.test(currentId)) {
       setIdMessage("4-12사이 대소문자 또는 숫자만 입력해 주세요!");
-      setIsId(false)
+      setIsUserId(false)
     } else {
       setIdMessage("사용가능한 아이디 입니다.");
-      setIsId(true)
+      setIsUserId(true)
     }
   };
 
   return(
     <>
-      <input 
+      <input
         className={styles.textform} 
-        id="input1" 
+        id={name}
+        name={name}
         type='text' 
         placeholder={guideTxt} 
-        onChange={onChangeUserID}
+        onChange={ e => {
+          handleValid(e)
+          changeText(e)
+        }}
       /> 
-      { id.length > 0 && (
-        <p className={ `${styles.warningMsg} ${ isId ? styles.success : styles.error }` }>{idMessage}</p>
+      { userId.length > 0 && (
+        <p className={ `${styles.warningMsg} ${ isUserId ? styles.success : styles.error }` }>{idMessage}</p>
       )}
     </>
   )
