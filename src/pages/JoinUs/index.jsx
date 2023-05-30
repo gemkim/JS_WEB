@@ -11,7 +11,8 @@ import AgreeContents from 'components/AgreeContents';
 import RadioButton from 'components/InputForm/RadioButton';
 import UserIdForm from 'components/InputForm/UserIdForm';
 import UserNameForm from 'components/InputForm/UserNameForm';
-import UserPhoneForm from 'components/InputForm/InsertTextForm';
+import UserPhoneForm from 'components/InputForm/UserPhoneForm';
+import UserSsnForm from 'components/InputForm/UserSsnForm';
 
 const agreeData = [
   { id: "termsOfService",
@@ -40,6 +41,8 @@ const JoinUs = (props) => {
     member_name: '',
     password: '',
     passwordConfirm: '',
+    ssn1: '',
+    ssn2: '',
     email: '',
     phone: '',
     gender: 'w',
@@ -91,6 +94,11 @@ const JoinUs = (props) => {
               <UserNameForm
                 name={'member_name'}
                 guideTxt={'이름'}
+                changeText={handleInputChange}
+               />
+              {/* 주민번호 */}
+              <UserSsnForm
+                setFormData={setFormData}
                 changeText={handleInputChange}
                />
               {/* 연락처 */}
