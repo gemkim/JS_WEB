@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { login, logout, onUserStateChange } from 'api/firebase';
+import { login, logout } from 'api/firebase';
 import { ContextStore } from 'context/store';
 import { checkMemberInfo } from 'api/checkMemberInfo';
 
@@ -14,14 +14,6 @@ import styles from './Login.module.scss'
 
 const Login = (props) => {
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const test = {
-    "memberId": "mis",
-    "password": "23"
-  }
-
   const {
     register,
     handleSubmit,
@@ -29,7 +21,7 @@ const Login = (props) => {
   } = useForm();
 
   const onValid = (data) => {
-    console.info(data);
+    checkMemberInfo(data)
   };
   
   const goForgotAccount = () => {
@@ -40,18 +32,15 @@ const Login = (props) => {
     navigate('/join-us');
   };
 
-  const handleLoginValue = () => {
-    
-  }
+  // 구글로그인 관련
   const contextValue = useContext(ContextStore)
-  useEffect(() => {
-    checkMemberInfo(test)
-    onUserStateChange( user => contextValue.user[1](user))
-    if(contextValue.user[0]) {
-  
-      checkMemberInfo(test)
-    }
-  },[contextValue])
+  // useEffect(() => {
+  //   checkMemberInfo(test)
+  //   onUserStateChange( user => contextValue.user[1](user))
+  //   if(contextValue.user[0]) {
+  //     checkMemberInfo(test)
+  //   }
+  // },[contextValue])
 
   return(
     <div className={styles.login}>
@@ -62,13 +51,13 @@ const Login = (props) => {
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
               <LoginInput 
-                register={register('id', {
+                register={register('memberId', {
                   required: '아이디를 입력해주세요.',
                 })}
                 type="text"
                 label="아이디"
-                htmlFor="id"
-                errorMessage={errors?.id?.message}
+                htmlFor="memberId"
+                errorMessage={errors?.memberId?.message}
               />
               <LoginInput
                 register={register('password', {
@@ -83,7 +72,7 @@ const Login = (props) => {
                 <CheckBox text={'아이디 저장'} />
               </div>
              <div className={styles.btnWrap}>
-              <LoginButton size={'btnL'} state={'success'} title="로그인" isValid={isValid} onClick={handleLoginValue} />
+              <LoginButton type={'submit'} size={'btnL'} state={'success'} title="로그인" isValid={isValid} />
              </div>
               <div className={styles.joinfind}>
                 <Link onClick={goForgotAccount}>아이디/비밀번호 찾기</Link>
