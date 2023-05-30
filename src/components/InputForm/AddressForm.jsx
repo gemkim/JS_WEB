@@ -37,7 +37,6 @@ const AddressForm = ({setFormData, address, zipCode}) => {
   const handleOpenPopup = (e) =>  open({ onComplete: handleComplete }) // 주소팝업
   
   useEffect(() => {
-    console.log(addressForm);
     setFormData((prevData) => ({
       ...prevData,
       zip_code,
@@ -64,6 +63,7 @@ const AddressForm = ({setFormData, address, zipCode}) => {
           type="text"
           value={zipCode}
           disabled
+          readOnly
         />
         <Button 
           type={'button'} 
@@ -82,6 +82,7 @@ const AddressForm = ({setFormData, address, zipCode}) => {
         type='text' 
         placeholder='주소'
         value={address}
+        readOnly
       />
       <input
         className={styles.textform}

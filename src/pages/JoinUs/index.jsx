@@ -42,17 +42,12 @@ const JoinUs = (props) => {
     passwordConfirm: '',
     email: '',
     phone: '',
-    gender: '',
+    gender: 'w',
     zip_code: '',
     address1: '',
     address2: ''
   });
 
-  const onValid = (data) => {
-    if (window.confirm('정말 등록하시겠습니까?')) {
-    }
-    return;
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,15 +58,23 @@ const JoinUs = (props) => {
   };
 
   const handleSubmit = (e) => {
+    // e.preventdefault()
     // registerUser(formData)  // 회원가입 API 요청 보내기
   }
+  const onValid = (data) => {
+    
+    console.log(data);
+    if (window.confirm('정말 등록하시겠습니까?')) {
+    }
+    return;
+  };
 
   return(
     <div className={styles.join}>
       <div className={styles.container}>
         <h2>회원가입</h2>
         <div className={styles.loginArea}>
-          <form  method="post" onSubmit={handleSubmit(onValid)} >
+          <form  method="post" onSubmit={handleSubmit} >
             <div className={styles.formBox}>
               {/* 아이디 */}
               <UserIdForm 
@@ -101,18 +104,22 @@ const JoinUs = (props) => {
                 <RadioButton 
                   name="gender" 
                   value="w" 
+                  current={formData.gender}
+                  setFormData={setFormData}
                 > 여성
                 </RadioButton>
                 <RadioButton 
                 name="gender" 
                 value="m" 
+                current={formData.gender}
+                setFormData={setFormData}
                 > 남성
                 </RadioButton>
               </div>
               {/* 메일폼 */}
               <div className={styles.emailform}>
                 <EmailForm
-                setFormData={setFormData}
+                  setFormData={setFormData}
                  />
               </div>
               {/* 주소인증 */}

@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const RadioButton = ({ children, value, name, chekcedState }) =>{
-  const [ dataForm, setDataForm ] = useState({
-    wonan: true,
-    man: false
-  })
-  const { woman, man } = dataForm
-
-  const onSelectGender = (e) => {
-    const currentValue = e.target.value
-    const checkedMan = watch('gender') === 'M';
-    const checkedWoman = watch('gender') === 'W';
-  
+const RadioButton = ({ children, value, name, current, setFormData }) =>{
+  const handleRadioChange = (e) => {
+    const selectedValue = e.target.value;
+      setFormData((prevData) => ({
+      ...prevData,
+      gender: selectedValue, 
+    }));
   }
   return(
     <label className={styles.chkBoxWrap}>
@@ -20,11 +15,8 @@ const RadioButton = ({ children, value, name, chekcedState }) =>{
         type="radio"
         value={value}
         name={name}
-        disabled={dataForm}
-        checked={
-          name === woman ? true : false
-        }
-        onChange={onSelectGender}
+        checked={current === value}
+        onChange={handleRadioChange}
       />
       <span className={styles.text}>{children}</span>
     </label>
