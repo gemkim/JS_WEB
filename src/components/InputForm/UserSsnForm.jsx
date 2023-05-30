@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Form.module.scss'
 
 const UserSsnForm = ({setFormData}) => {
     // 초기값 세팅 - 비밀번호, 비밀번호확인, 
     const [ ssnData, setSsnData] = useState({
+      ssn : '',
       ssn1: '',
       ssn2: '',
     });
-    const { ssn1, ssn2 } = ssnData;
+    const { ssn, ssn1, ssn2 } = ssnData;
     //오류메세지 상태저장
     const [ssnMessage, setSsnMessage] = useState('');
     // 유효성 검사
@@ -19,11 +20,11 @@ const UserSsnForm = ({setFormData}) => {
       const currentValue = target.value;
  
       if( target.name ) {
+        
         setSsnData((prevData) => ({
           ...prevData,
           [target.name]: currentValue
         }));
-        
         let fullSSN = ssnData.ssn1 + ssnData.ssn2
         if (!numberRegExp.test(fullSSN)) {
           setSsnMessage("숫자만 입력해주세요");
@@ -39,6 +40,13 @@ const UserSsnForm = ({setFormData}) => {
         }));
       }
     }
+
+    useEffect(() => {
+      setSsnData((prevData) => ({
+        ...prevData,
+        ssn
+      }));
+    }, [ssn, ssn1, ssn2])
   return (
     <div className={styles.ssnArea}>
       <input 
