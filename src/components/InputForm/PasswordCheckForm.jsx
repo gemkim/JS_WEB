@@ -7,7 +7,7 @@ const PasswordCheckForm = ({setFormData}) => {
     password: '',
     passwordConfirm: '',
   });
-  const { password, passwordConfirm } = passwordForm
+  const { password, passwordConfirm } = passwordForm;
   //오류메세지 상태저장
   const [passwordMessage, setPasswordMessage] = useState('');
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
