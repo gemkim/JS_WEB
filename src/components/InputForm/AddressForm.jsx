@@ -43,7 +43,7 @@ const AddressForm = ({setFormData, address, zipCode}) => {
       address1,
       address2
     }));
-  }, [addressForm])
+  }, [address1, address2, zip_code])
 
  
   const onChangeText = (e) => {

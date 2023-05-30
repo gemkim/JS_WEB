@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { registerUser } from 'api/registerUser'
 import styles from './JoinUs.module.scss'
 

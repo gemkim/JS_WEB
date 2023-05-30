@@ -12,19 +12,19 @@ const PrdOrder = (props) => {
             <table className={styles.tbBoard}>
               <caption>주문리스트</caption>
               <colgroup>
-                <col style="width: 15%" />
-                <col style="*" />
-                <col style="width: 10%" />
-                <col style="width: 10%" />
-                <col style="width: 10%" />
+                <col style={{width: 15 + '%'}} />
+                <col style={{width: 55 + '%' }} />
+                <col style={{width: 10 + '%'}} />
+                <col style={{width: 10 + '%'}} />
+                <col style={{width: 10 + '%'}} />
               </colgroup>
               <thead>
                 <tr>
-                    <th scope="col"><div class="tb-center"></div></th>
-                    <th scope="col"><div class="tb-center">상품명</div></th>
-                    <th scope="col"><div class="tb-center">수량</div></th>
-                    <th scope="col"><div class="tb-center">가격</div></th>
-                    <th scope="col"><div class="tb-center">적립금</div></th>
+                  <th scope="col"><div class="tb-center"></div></th>
+                  <th scope="col"><div class="tb-center">상품명</div></th>
+                  <th scope="col"><div class="tb-center">수량</div></th>
+                  <th scope="col"><div class="tb-center">가격</div></th>
+                  <th scope="col"><div class="tb-center">적립금</div></th>
                 </tr>
               </thead>
               <tbody>
