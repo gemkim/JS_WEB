@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
 const UserSsnForm = ({setFormData}) => {
@@ -20,13 +20,11 @@ const UserSsnForm = ({setFormData}) => {
       const currentValue = target.value;
  
       if( target.name ) {
-        
         setSsnData((prevData) => ({
-          ...prevData,
-          [target.name]: currentValue
+          ...prevData, [target.name]: currentValue, ssn : fullSsn
         }));
-        let fullSSN = ssnData.ssn1 + ssnData.ssn2
-        if (!numberRegExp.test(fullSSN)) {
+        const fullSsn = ssnData.ssn1 + ssnData.ssn2
+        if (!numberRegExp.test(fullSsn)) {
           setSsnMessage("숫자만 입력해주세요");
           setIsSsn(false)
         } else {
@@ -41,13 +39,8 @@ const UserSsnForm = ({setFormData}) => {
       }
     }
 
-    useEffect(() => {
-      setSsnData((prevData) => ({
-        ...prevData,
-        ssn
-      }));
-    }, [ssn, ssn1, ssn2])
   return (
+    <>
     <div className={styles.ssnArea}>
       <input 
         className={styles.textform} 
@@ -67,10 +60,11 @@ const UserSsnForm = ({setFormData}) => {
         maxLength={7}
         onChange={ e => onChangSsnNumber(e)}
       /> 
-    { ssn1.length > 0 && (
+    </div>
+    { ssn.length > 0 && (
       <p className={ `${styles.warningMsg} ${ isSsn ? styles.success : styles.error }` }>{ssnMessage}</p>
     )}
-  </div>
+    </>
   )
 };
 

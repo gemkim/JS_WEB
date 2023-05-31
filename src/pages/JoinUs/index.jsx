@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { registerUser } from 'api/registerUser'
 import styles from './JoinUs.module.scss'
 
@@ -12,6 +12,8 @@ import UserIdForm from 'components/InputForm/UserIdForm';
 import UserNameForm from 'components/InputForm/UserNameForm';
 import UserPhoneForm from 'components/InputForm/UserPhoneForm';
 import UserSsnForm from 'components/InputForm/UserSsnForm';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const agreeData = [
   { id: "termsOfService",
@@ -40,6 +42,7 @@ const JoinUs = (props) => {
     member_name: '',
     password: '',
     passwordConfirm: '',
+    snn: '',
     ssn1: '',
     ssn2: '',
     email: '',
@@ -49,6 +52,11 @@ const JoinUs = (props) => {
     address1: '',
     address2: ''
   });
+  const navigate = useNavigate();
+  const {
+    handleSubmit,
+    // formState: { errors, isValid },
+  } = useForm();
 
 
   const handleInputChange = (e) => {
@@ -59,24 +67,20 @@ const JoinUs = (props) => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    // e.preventdefault()
-    // registerUser(formData)  // 회원가입 API 요청 보내기
-  }
   const onValid = (data) => {
-    
-    console.log(data);
-    if (window.confirm('정말 등록하시겠습니까?')) {
-    }
-    return;
+    if (window.confirm('정말 등록하시겠습니까?')) return navigate('/');
   };
+
+  const handleCancel = (e) => {
+    console.log('test');
+  }
 
   return(
     <div className={styles.join}>
       <div className={styles.container}>
         <h2>회원가입</h2>
         <div className={styles.loginArea}>
-          <form  method="post" onSubmit={handleSubmit} >
+          <form  method="post" onSubmit={handleSubmit(onValid)} >
             <div className={styles.formBox}>
               {/* 아이디 */}
               <UserIdForm 
@@ -145,7 +149,7 @@ const JoinUs = (props) => {
             </div>
 
             <div className={styles.btnWrap}>
-              <Button type={'button'} text={'취소'} size={'btnL'} state={'cancel'} />
+              <Button type={'button'} text={'취소'} size={'btnL'} state={'cancel'} onClick={handleCancel} />
               <Button type={'submit'} text={'확인'}  size={'btnL'} state={'success'} />
             </div>
           </form>

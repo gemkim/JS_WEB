@@ -18,9 +18,6 @@ export async function checkMemberInfo(userInfo){
       if(result.memberId === userInfo.memberId ) {
         alert(`반갑습니다😍. ${result.memberId}님 로그인이 되었습니다.`)
         window.location.href="/"
-      } else{
-        alert('아이디가 없습니다. 회원가입 해주세요');
-        window.location.href="/join-us"
       }
       } else {
         alert('정보가 없습니다. 아이디와 패스워드를 확인해주세요');
