@@ -3,14 +3,14 @@ import styles from './Form.module.scss'
 import Button from 'components/Button';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 
-const AddressForm = ({setFormData, address, zipCode}) => {
+const AddressForm = ({setFormData, address, zipcode}) => {
   // data
   const [ addressForm, setAddressForm ] = useState({
-    zip_code: '',
+    zipCode: '',
     address1: '',
     address2: '',
   })
-  const { zip_code, address1, address2 } = addressForm
+  const { zipCode, address1, address2 } = addressForm
 
   // 주소검색 기능
   const open = useDaumPostcodePopup();  
@@ -30,7 +30,7 @@ const AddressForm = ({setFormData, address, zipCode}) => {
     }
     setAddressForm((prevData) => ({
       ...prevData,
-      zip_code: zonecode, address1: fullAddress
+      zipCode: zonecode, address1: fullAddress
     }));
     // console.log(scriptUrl); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   };
@@ -39,11 +39,11 @@ const AddressForm = ({setFormData, address, zipCode}) => {
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      zip_code,
+      zipCode,
       address1,
       address2
     }));
-  }, [address1, address2, zip_code])
+  }, [address1, address2, zipCode])
 
  
   const onChangeText = (e) => {
@@ -59,9 +59,9 @@ const AddressForm = ({setFormData, address, zipCode}) => {
     <div className={styles.address}>
       <div className={styles.zonecode}>
         <input 
-          name='zip_code'
+          name='zipCode'
           type="text"
-          value={zipCode}
+          value={zipcode}
           disabled
           readOnly
         />
