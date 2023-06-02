@@ -4,6 +4,7 @@ import NotFound from 'pages/NotFound';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
+import OrderSheet from 'pages/OrderSheet';
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'join-us',
         element: <JoinUs />,
+      },
+      {
+        path: 'order-sheet',
+        element: <OrderSheet />,
       },
     ],
   },
