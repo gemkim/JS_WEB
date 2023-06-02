@@ -41,7 +41,11 @@
     }
   }
 
- 
+  .ssnArea{
+    display: flex;
+    align-items: center;
+    vertical-align: top;
+  }
 
   //email form
   .inputEmail{

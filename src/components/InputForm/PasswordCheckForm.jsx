@@ -7,7 +7,7 @@ const PasswordCheckForm = ({setFormData}) => {
     password: '',
     passwordConfirm: '',
   });
-  const { password, passwordConfirm } = passwordForm
+  const { password, passwordConfirm } = passwordForm;
   //오류메세지 상태저장
   const [passwordMessage, setPasswordMessage] = useState('');
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
@@ -52,10 +52,10 @@ const PasswordCheckForm = ({setFormData}) => {
       setPasswordConfirmMessage("똑같은 비밀번호를 입력했습니다.");
       setIsPasswordConfirm(true)
     }
-    setFormData((prevData) => ({
-      ...prevData,
-      passwordConfirm
-    }));
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   passwordConfirm
+    // }));
   }
 
   return (
