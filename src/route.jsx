@@ -6,6 +6,8 @@ import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
 import ForgotAccount from 'pages/ForgotAccount';
 import PrdOrder from 'pages/PrdOrder';
+import OrderSheet from 'pages/OrderSheet';
+
 
 const router = createBrowserRouter([
   {
@@ -29,10 +31,13 @@ const router = createBrowserRouter([
         path: 'join-us',
         element: <JoinUs />,
       },
-     
       { 
         path: 'order',
         element: <PrdOrder />,
+      },
+      {
+        path: 'order-sheet',
+        element: <OrderSheet />,
       },
     ],
   },
