@@ -20,28 +20,18 @@ import { joinMember } from 'api/joinMember';
 
 const JoinUs = (props) => {
   const [formData, setFormData] = useState({
-    "memberId" : "",
-    "password" : "",
-    "adminYn" :  "",
-    "saveStatus" :  "",
-    "bankSeq" :  "",
-    "bankAccount" :  "",
-    "privacyPolicy" :  "",
-    "allowPromotions" : "",
-    "termsOfService" :  "",
-    "phone":  "",
-    "email":  "",
-    "memberName":  "",
-    "ssn":  "",
-    "ssn1":  "",
-    "ssn2": "",
-    "gender": "",
-    "transPoint": "0",
-    "transLevel": "1",
-    "address": "",
-    "address1":  "",
-    "address2":  "",
-    "zipCode":  ""
+  "password": "",
+  "adminYn": "N",
+  "saveStatus": "Y",
+  "bankSeq": "",
+  "bankAccount": "",
+  "phone": "",
+  "email": "",
+  "memberName": "",
+  "gender": "W",
+  "transPoint": 0,
+  "transLevel": "B",
+  "address": "",
   });
   const navigate = useNavigate();
   const {
@@ -106,14 +96,14 @@ const JoinUs = (props) => {
               <div className={styles.gender}>
                 <RadioButton 
                   name="gender" 
-                  value="w" 
+                  value="W" 
                   current={formData.gender}
                   setFormData={setFormData}
                 > 여성
                 </RadioButton>
                 <RadioButton 
                 name="gender" 
-                value="m" 
+                value="M" 
                 current={formData.gender}
                 setFormData={setFormData}
                 > 남성

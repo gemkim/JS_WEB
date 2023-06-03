@@ -1,9 +1,10 @@
 export async function checkMemberInfo(userInfo){
-  const data = JSON.stringify(userInfo);
-  
+
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   
+  const data = JSON.stringify(userInfo);
+
   const requestOptions = {
     method: 'POST',
     headers: myHeaders,
@@ -12,7 +13,7 @@ export async function checkMemberInfo(userInfo){
   };
   
   return await fetch("/user/login", requestOptions)
-  .then( response => response.json())
+  .then( response => response.text())
   .then( result => {
     if(result) {
       if(result.memberId === userInfo.memberId ) {
