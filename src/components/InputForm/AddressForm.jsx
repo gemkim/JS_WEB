@@ -3,65 +3,48 @@ import styles from './Form.module.scss'
 import Button from 'components/Button';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 
-const AddressForm = ({setFormData, address, zipcode}) => {
+const AddressForm = ({setFormData, address1, address2, zipCode}) => {
   // data
-  const [ addressForm, setAddressForm ] = useState({
-    zipCode: '',
-    address1: '',
-    address2: '',
-  })
-  const { zipCode, address1, address2 } = addressForm
+
 
   // 주소검색 기능
-  const open = useDaumPostcodePopup();  
+  const open = useDaumPostcodePopup();
+
   const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = '';
+    let address1 = data.address;
     let zonecode = data.zonecode
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-    }
-    setAddressForm((prevData) => ({
-      ...prevData,
-      zipCode: zonecode, address1: fullAddress
-    }));
-    // console.log(scriptUrl); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-  };
-  const handleOpenPopup = (e) =>  open({ onComplete: handleComplete }) // 주소팝업
-  
-  useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      zipCode,
+      zipCode : zonecode, 
       address1,
-      address2
     }));
-  }, [address1, address2, zipCode])
+  };
 
- 
+  useEffect(() => {
+    const fullAddress = address1 + address2
+    setFormData((prevData) => ({
+      ...prevData,
+      address : fullAddress
+    }));
+  }, [setFormData, address1, address2])
+
+  const handleOpenPopup = (e) =>  open({ onComplete: handleComplete }) // 주소팝업
+  
   const onChangeText = (e) => {
-    const target = e.target
-    const currentValue = target.value;
-    setAddressForm((prevData) => ({
+    const currentValue = e.target.value;
+    setFormData((prevData) => ({
       ...prevData,
       address2: currentValue
     }));
   }
-
   return (
     <div className={styles.address}>
       <div className={styles.zonecode}>
         <input 
           name='zipCode'
           type="text"
-          value={zipcode}
+          value={zipCode}
           disabled
           readOnly
         />
@@ -81,7 +64,7 @@ const AddressForm = ({setFormData, address, zipcode}) => {
         name='address1'
         type='text' 
         placeholder='주소'
-        value={address}
+        value={address1}
         readOnly
       />
       <input
@@ -89,8 +72,9 @@ const AddressForm = ({setFormData, address, zipcode}) => {
         id="address2" 
         name='address2'
         type="text" 
+        value={address2 || ''}
         placeholder='나머지 주소'
-        onChange={onChangeText}
+        onChange={ e => onChangeText(e)}
        />
     </div>
   )

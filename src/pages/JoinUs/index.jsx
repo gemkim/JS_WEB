@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { registerUser } from 'api/registerUser'
 import styles from './JoinUs.module.scss'
 
@@ -15,6 +15,7 @@ import UserSsnForm from 'components/InputForm/UserSsnForm';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { joinMember } from 'api/joinMember';
+import PageTitle from 'components/commonLayout/PageTitle';
 
 
 
@@ -35,7 +36,7 @@ const JoinUs = (props) => {
     "ssn":  "",
     "ssn1":  "",
     "ssn2": "",
-    "gender": "",
+    "gender": "W",
     "transPoint": "0",
     "transLevel": "1",
     "address": "",
@@ -49,7 +50,6 @@ const JoinUs = (props) => {
     // formState: { errors, isValid },
   } = useForm();
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -58,7 +58,7 @@ const JoinUs = (props) => {
     }));
   };
 
-  const onValid = (data) => {
+  const onValid = () => {
     joinMember(formData)
   };
   
@@ -70,7 +70,7 @@ const JoinUs = (props) => {
   return(
     <div className={styles.join}>
       <div className={styles.container}>
-        <h2>회원가입</h2>
+        <PageTitle title={'회원가입'} />
         <div className={styles.loginArea}>
           <form  method="post" onSubmit={handleSubmit(onValid)} >
             <div className={styles.formBox}>
@@ -106,30 +106,30 @@ const JoinUs = (props) => {
               <div className={styles.gender}>
                 <RadioButton 
                   name="gender" 
-                  value="w" 
+                  value="W" 
                   current={formData.gender}
                   setFormData={setFormData}
                 > 여성
                 </RadioButton>
                 <RadioButton 
                 name="gender" 
-                value="m" 
+                value="M" 
                 current={formData.gender}
                 setFormData={setFormData}
                 > 남성
                 </RadioButton>
               </div>
               {/* 메일폼 */}
-              <div className={styles.emailform}>
-                <EmailForm
-                  setFormData={setFormData}
-                 />
-              </div>
+            
+              <EmailForm
+                setFormData={setFormData}
+                />
               {/* 주소인증 */}
               <AddressForm 
                 setFormData={setFormData}
-                address={formData.address1} 
-                zipcode={formData.zipCode} 
+                address1={formData.address1} 
+                address2={formData.address2} 
+                zipCode={formData.zipCode} 
                />
             </div>
             {/* 동의하기 */}
