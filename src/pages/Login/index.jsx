@@ -26,11 +26,11 @@ const Login = (props) => {
   };
   
   const goForgotAccount = () => {
-    navigate('/forgot-account');
+    navigate('/find');
   };
 
   const goJoinUs = () => {
-    navigate('/join-us');
+    navigate('/join');
   };
 
   // 구글로그인 관련

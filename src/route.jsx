@@ -5,7 +5,7 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
 import ForgotAccount from 'pages/ForgotAccount';
-import PrdOrder from 'pages/PrdOrder';
+import OderTableForm from 'pages/OrderTableForm';
 import OrderSheet from 'pages/OrderSheet';
 
 
@@ -24,19 +24,19 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: 'forgot-account',
+        path: 'find',
         element: <ForgotAccount />,
       },
       {
-        path: 'join-us',
+        path: 'join',
         element: <JoinUs />,
       },
       { 
         path: 'order',
-        element: <PrdOrder />,
+        element: <OderTableForm />,
       },
       {
-        path: 'order-sheet',
+        path: 'order/:id',
         element: <OrderSheet />,
       },
     ],
