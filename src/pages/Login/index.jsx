@@ -11,6 +11,7 @@ import LoginInput from 'components/login/LoginInput';
 import LoginButton from 'components/Button/LoginButton';
 
 import styles from './Login.module.scss'
+import PageTitle from 'components/commonLayout/PageTitle';
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Login = (props) => {
   return(
     <div className={styles.login}>
       <div className={styles.container}>
-        <h2>로그인</h2>
+        <PageTitle title={'로그인'} />
         <div className={styles.loginArea}>
           <form onSubmit={handleSubmit(onValid)}>
             {/* 기본 로그인 */}

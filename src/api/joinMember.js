@@ -1,6 +1,5 @@
 export async function joinMember(userJoin){
   const data = JSON.stringify(userJoin);
-  console.log(data);
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   

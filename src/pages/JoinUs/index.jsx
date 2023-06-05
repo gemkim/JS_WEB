@@ -31,7 +31,6 @@ const JoinUs = (props) => {
     "allowPromotions" : "",
     "termsOfService" :  "",
     "phone":  "",
-    "email":  "",
     "memberName":  "",
     "ssn":  "",
     "ssn1":  "",
@@ -89,7 +88,7 @@ const JoinUs = (props) => {
               <UserNameForm
                 name={'memberName'}
                 guideTxt={'이름'}
-                changeText={handleInputChange}
+                setFormData={setFormData}
                />
               {/* 주민번호 */}
               <UserSsnForm
@@ -100,7 +99,7 @@ const JoinUs = (props) => {
               <UserPhoneForm
                 name={'phone'}
                 guideTxt={'01012345678'}
-                changeText={handleInputChange}
+                setFormData={setFormData}
                />  
               {/* 젠더 */}
               <div className={styles.gender}>
@@ -123,6 +122,7 @@ const JoinUs = (props) => {
             
               <EmailForm
                 setFormData={setFormData}
+                email={formData.email}
                 />
               {/* 주소인증 */}
               <AddressForm 
