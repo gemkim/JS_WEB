@@ -1,80 +1,26 @@
-import React from 'react';
-import TableSheet from 'components/TableSheet';
+import React, { useState } from 'react';
 
 import styles from './OrderSheet.module.scss'
+import OrderInfoForm from 'components/order/OrderInfoForm';
+import PageTitle from 'components/commonLayout/PageTitle';
 
 const OrderSheet = (props) => {
 
-  const userInfo = {
-    name : {
-      type: '이름',
-      value : 'mj'
-    },
-    email : {
-      type: '이메일',
-      value : 'mj@naver.com',
-    },
-    userPhone : {
-      type: '연락처',
-      value : '01012345678'
-    },
-    address : {
-      type: '주소',
-      zonecode : '02678',
-      address1 : '서울 강남구',
-      address2 : '101호',
-    },
-
-    userMessage : {
-      type: '배송메세지',
-      value : '-'
-    },
-  }
+  const [formData, setFormData] = useState( {
+    memberName : "test1",
+    phone : "01076885412",
+    email : "testmem@naver.com",
+    address1 : "경남 거창군 위천면 강남불1길 18",
+    address2 : "논현동 101호",
+    zipCode : "12305",
+  })
 
   return(
     <div className={styles.orderSheetWrap}>
       <div className={styles.container}>
-      <form action="">
-        <h3>주문자 정보</h3>
-        <div>
-          <caption>결제 정보</caption>
-          <TableSheet tableData={userInfo} />
-        </div>
+        <PageTitle title={'주문자 정보'} />
+        <OrderInfoForm formData={formData} setFormData={setFormData} />
       
-        {/* <div className={styles.totalPay}>
-          <table>
-            <thead>
-              <tr>
-                <td>상품금액</td>
-              </tr>
-              <tr>
-                <td>배송비</td>
-              </tr>
-              <tr>
-                <td>할인금액</td>
-              </tr>
-              <tr>
-                <td>추가금액</td>
-              </tr>
-              <tr>
-                <td>결제 예정금액</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>쿠폰 사용</td>
-                <td>
-                  쿠폰선택
-                </td>
-              </tr>
-              <tr>
-                <td>제휴 포인트 사용</td>
-                <td>캐시백 ~~사용</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  */}
         <div className={styles.payway}>
           <h3>결제 정보</h3>
           <table className={styles.tbSheet}>
@@ -119,8 +65,6 @@ const OrderSheet = (props) => {
             </tbody>
           </table>
         </div>
-      
-      </form>
       </div>
     </div>
   )
