@@ -28,9 +28,9 @@ const TableFormLists = ({data}) => {
           <div className={styles.textBox}>
             <p className={styles.title}>{prdName}</p>
             <div className={styles.option}>
-              { option1 && <span>{option1.name} <em className='count'>{option1.count}</em>개 <em>{option1.price}</em></span> }
-              { option2 && <span>{option2.name} <em className='count'>{option2.count}</em>개 <em>{option2.price}</em></span> }
-              { option3 && <span>{option3.name} <em className='count'>{option3.count}</em>개 <em>{option3.price}</em></span> }
+              { option1 && <span>{option1.name} <em className={styles.extraCount}>{option1.count}</em>개 <em className={styles.extraCharge}>{option1.price}원</em></span> }
+              { option2 && <span>{option2.name} <em className={styles.extraCount}>{option2.count}</em>개 <em className={styles.extraCharge}>{option2.price}원</em></span> }
+              { option3 && <span>{option3.name} <em className={styles.extraCount}>{option3.count}</em>개 <em className={styles.extraCharge}>{option3.price}원</em></span> }
             </div>
             <button type='button' className={styles.btnDefault}>옵션변경</button>
           </div>
