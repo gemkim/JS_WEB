@@ -1,10 +1,9 @@
 export async function joinMember(userJoin){
-  var myHeaders = new Headers();
+  const data = JSON.stringify(userJoin);
+  const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  var data = JSON.stringify(userJoin);
-
-  var requestOptions = {
+  const requestOptions = {
     method: 'POST',
     headers: myHeaders,
     body: data,

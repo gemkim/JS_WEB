@@ -1,0 +1,89 @@
+.container{
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+  input{
+    margin-top: 5px;
+    padding: 12px 15px;
+    display: block;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+
+h3{
+  margin: 30px 0 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+table.payTable{
+  margin-top: 20px;
+  width: 100%;
+  background-color: #f4f4f4;
+  thead{
+    tr{
+      th{
+        padding: 12px 0;
+        text-align: center;
+        font-size: .9rem;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+  tbody{
+    tr{
+      font-size: 1rem;
+     td{
+      padding: 20px 0;
+      text-align: center;
+      strong{
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+     }
+    }
+  }
+}
+
+.option{
+  margin: 0 auto;
+  .list{
+    margin-bottom: 10px;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+    p.title{
+      padding: 0 20px;
+      width: 30%;
+      min-width: 150px;
+      font-size: .9rem;
+      font-weight: bold;
+    }
+    div{
+      width: 70%;
+      display: flex;
+       
+      button{
+        margin-left: 10px;
+        padding: 0 10px;
+        max-width: 100px;
+        font-size: .8rem;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+.paySort{
+  li{
+    display: flex;
+    margin-bottom: 10px;
+    label{
+      margin-left: 8px;
+    }
+  }
+}

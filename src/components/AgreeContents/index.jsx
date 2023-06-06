@@ -42,19 +42,15 @@ const AgreeContents = ({setFormData}) => {
     }
   };
 
-  const handleCheckAllChange = () => {
-
-    if ( termsOfService && privacyPolicy && allowPromotions) {
-      setTermsOfService(false);
-      setPrivacyPolicy(false);
-      setAllowPromotions(false);
-    } else if( !termsOfService || !privacyPolicy || !allowPromotions ) {
-      setCheckAll(true)
-      setTermsOfService(true);
-      setPrivacyPolicy(true);
-      setAllowPromotions(true);
-    }
-  };
+  // const handleCheckAllChange = (e) => {
+  //   const { checked } = e.target;
+  //   setIsChecked((prev) => ({
+  //     termsOfService: checked,
+  //     privacyPolicy: checked,
+  //     allowPromotions: checked
+  //   }));
+  //   agreeNessesaryChecked()
+  // };
 
   useEffect(() => {
     // if ( termsOfService && privacyPolicy && allowPromotions) {
@@ -78,7 +74,8 @@ const AgreeContents = ({setFormData}) => {
           type="checkbox" 
           name="checkAll" 
           id="checkAll" 
-          onChange={ handleCheckAllChange }
+          // value={isAllChecked}
+          // onChange={ handleCheckAllChange }
          />
         <label htmlFor="checkAll">개인정보 수집 및 이용, 프로모션 정보 수신(선택)에 모두 동의합니다.</label>
       </div>
