@@ -2,11 +2,18 @@ import React from 'react';
 import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
 
-const TableFormLists = ({data}) => {
-  const {id, prdName, option, beforePrice, price, imgURL, count} = data
+const TableFormLists = ({data, setData, item}) => {
+  const {id, prdName, option, beforePrice, price, imgURL, count, deliveryFee} = item
   const sumPrice = price * count
   const {option1, option2, option3} = option
-  console.log(option1);
+
+  const handleIncreaseCount = (e) => {
+    console.log('증가');
+  }
+
+  const handleDecreaseCount = (e) => {
+    console.log('감소');
+  }
 
 
   return (
@@ -15,7 +22,7 @@ const TableFormLists = ({data}) => {
       <td className={styles.check}>
         <div className={styles.checkBox}>
           <label htmlFor="chk1">
-            <input type="checkbox" id="chk1" /><span className='sr-only'>선택하기</span>
+            <input type="checkbox" id="chk1" onChange={null} /><span className='sr-only'>선택하기</span>
           </label>
         </div>
       </td>
@@ -48,10 +55,9 @@ const TableFormLists = ({data}) => {
         <div className={styles.countBox}>
           <div className={styles.editCount}> 
             <input type="text" name="amount" value={count} readOnly /><span className='sr-only'>{count}개</span>
-            <button type="button" className={styles.down}><span className='sr-only'>감소</span></button> 
-            <button type="button" className={styles.up}><span className='sr-only'>증가</span></button>
+            <button type="button" className={styles.down} onClick={handleDecreaseCount}><span className='sr-only'>감소</span></button> 
+            <button type="button" className={styles.up} onClick={handleIncreaseCount}><span className='sr-only'>증가</span></button>
           </div>
-          <button type="button" className={styles.btnEdit}>수정</button>
         </div>
       </td> 
       {/* 합계 */}
@@ -65,8 +71,7 @@ const TableFormLists = ({data}) => {
       {/* 배송비 */}
       <td className={styles.delivery}>
         <p className={styles.text}>
-          [기본배송]<br />
-          조건
+          {deliveryFee}원
         </p>
       </td>
     </tr>

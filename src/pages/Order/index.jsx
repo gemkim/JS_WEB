@@ -20,10 +20,10 @@ const OderForm = (props) => {
   })
   const navigate = useNavigate()
 
-  const data = [
+  const [data, setData] = useState([
     {
     id : "325445747",
-    prdName : "이스페더 컴포트 숏슬리브 1+1",
+    prdName : "이스페더 11111111",
     option: { 
       option1 : {
         name: "블랙 M",
@@ -36,31 +36,35 @@ const OderForm = (props) => {
         price: 3000
       },
     },
-    count: 3,
+    count: 1,
+    deliveryFee: 3000,
     beforePrice : "85400",
     price : "51200",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
   },
   {
     id : "4634574",
-    prdName : "test 컴포트 숏슬리브 1+1",
+    prdName : "test 2222222222 1+1",
     option: { 
       option1 : {
-        name: "블랙 M",
+        name: "test M",
         count : 1,
         price: 3000
       },
       option2 : {
-        name: "블루 S",
+        name: "test S",
         count : 2,
         price: 3000
       },
     },
     count: 3,
+    deliveryFee: 3000,
     beforePrice : "53400",
     price : "25400",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
-  }]
+  }])
+
+ 
 
   const [isPopup, setIsPopup] = useState(false)
 
@@ -100,7 +104,7 @@ const OderForm = (props) => {
                   <tr>
                     <th scope="col">
                       <div className={styles.checkAll}>
-                        <input type='checkbox' className='select' /><span className="sr-only">선택</span>
+                        <input type='checkbox' className='select' onChange={null} /><span className="sr-only">선택</span>
                       </div>
                     </th>
                     <th scope="col"><span>상품명</span></th>
@@ -112,8 +116,10 @@ const OderForm = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  { data.map( (data) => (
-                    <TableFormLists key={data.id} data={data} />
+                  { data.map( ( item ) => (
+                    <TableFormLists key={data.id} data={data} item={item}
+                    setData={setData}
+                    />
                   ))}
 
                 </tbody>
@@ -211,9 +217,9 @@ const OderForm = (props) => {
                 <dt>카드구분</dt>
                 <dd>
                   <div className={styles.formWrap}>
-                    <input type="radio" id="credit1" name="drone" value="credit1" checked />
+                    <input type="radio" id="credit1" name="drone" value="credit1" onChange={null} />
                     <label htmlFor="credit1">개인카드</label>
-                    <input type="radio" id="credit1" name="drone" value="credit1" checked />
+                    <input type="radio" id="credit1" name="drone" value="credit1" onChange={null} />
                     <label htmlFor="credit1">법인카드</label>
                   </div>
                 </dd>
