@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Order.module.scss'
@@ -18,8 +18,6 @@ const OderForm = (props) => {
     address2 : "논현동 101호",
     zipCode : "12305",
   })
-  const navigate = useNavigate()
-
   const [data, setData] = useState([
     {
     id : "325445747",
@@ -63,9 +61,6 @@ const OderForm = (props) => {
     price : "25400",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
   }])
-
- 
-
   const [isPopup, setIsPopup] = useState(false)
 
   const handleToggle = (e) => {
@@ -75,6 +70,32 @@ const OderForm = (props) => {
   const openPopup = (e) => {
     setIsPopup(true)
   }
+
+  const handleIncrement = (list) =>{
+    const updatedData = data.map(item => {
+      if(item.id === list.id){
+        const count = item.count + 1;
+        return { ...list, count};
+      }
+      return item;
+    })
+    setData(updatedData);
+  }
+
+  // const handleIncrement = (list) => {
+  //  const test = data.map( item => {
+  //     if(item.id === list.id ){
+  //       const count = list.count + 1
+  //       setData([...data, { ...list, count : count < 1 ? 1 : count }])
+  //     }
+  //   })
+  //   console.log(test);
+  // }
+
+  const handleDecrement = e => {
+    console.log('감소');
+  }
+
   const handleCancel = (e) => {
     console.alert('취소할꺼냐아아아');
   }
@@ -117,8 +138,9 @@ const OderForm = (props) => {
                 </thead>
                 <tbody>
                   { data.map( ( item ) => (
-                    <TableFormLists key={data.id} data={data} item={item}
-                    setData={setData}
+                    <TableFormLists key={data.id} data={data} item={item} setData={setData}
+                    onIncrement={handleIncrement}
+                    onDecrement={handleDecrement}
                     />
                   ))}
 

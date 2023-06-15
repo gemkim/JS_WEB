@@ -2,19 +2,10 @@ import React from 'react';
 import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
 
-const TableFormLists = ({data, setData, item}) => {
+const TableFormLists = ({data, setData, item, onDecrement, onIncrement}) => {
   const {id, prdName, option, beforePrice, price, imgURL, count, deliveryFee} = item
   const sumPrice = price * count
   const {option1, option2, option3} = option
-
-  const handleIncreaseCount = (e) => {
-    console.log('증가');
-  }
-
-  const handleDecreaseCount = (e) => {
-    console.log('감소');
-  }
-
 
   return (
     <tr key={id}>
@@ -55,8 +46,8 @@ const TableFormLists = ({data, setData, item}) => {
         <div className={styles.countBox}>
           <div className={styles.editCount}> 
             <input type="text" name="amount" value={count} readOnly /><span className='sr-only'>{count}개</span>
-            <button type="button" className={styles.down} onClick={handleDecreaseCount}><span className='sr-only'>감소</span></button> 
-            <button type="button" className={styles.up} onClick={handleIncreaseCount}><span className='sr-only'>증가</span></button>
+            <button type="button" className={styles.down} onClick={ e => onDecrement(item)}><span className='sr-only'>감소</span></button> 
+            <button type="button" className={styles.up} onClick={ e => onIncrement(item)}><span className='sr-only'>증가</span></button>
           </div>
         </div>
       </td> 
