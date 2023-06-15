@@ -1,11 +1,20 @@
 import React from 'react';
 import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
+import OptionList from './OptionList';
 
-const TableFormLists = ({data, setData, item, onDecrement, onIncrement}) => {
-  const {id, prdName, option, beforePrice, price, imgURL, count, deliveryFee} = item
+const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup}) => {
+  const {id, prdName, beforePrice, price, imgURL, count, deliveryFee} = item
   const sumPrice = price * count
-  const {option1, option2, option3} = option
+  // const {option1, option2, option3} = options
+
+  const optionList = options.map( item => item )
+
+  const totalPrice = options.reduce((accumulator, currentOption) => {
+    return accumulator + (currentOption.price * currentOption.count);
+  }, 0);
+  console.log(totalPrice);
+
 
   return (
     <tr key={id}>
@@ -26,11 +35,16 @@ const TableFormLists = ({data, setData, item, onDecrement, onIncrement}) => {
           <div className={styles.textBox}>
             <p className={styles.title}>{prdName}</p>
             <div className={styles.option}>
-              { option1 && <span>{option1.name} <em className={styles.extraCount}>{option1.count}</em>개 <em className={styles.extraCharge}>{option1.price}원</em></span> }
-              { option2 && <span>{option2.name} <em className={styles.extraCount}>{option2.count}</em>개 <em className={styles.extraCharge}>{option2.price}원</em></span> }
-              { option3 && <span>{option3.name} <em className={styles.extraCount}>{option3.count}</em>개 <em className={styles.extraCharge}>{option3.price}원</em></span> }
+              {
+                optionList.map( (item, idx) => (
+                  <OptionList key={item.name} item={item} idx={idx} />
+                ))
+              }
             </div>
-            <button type='button' className={styles.btnDefault}>옵션변경</button>
+            <button 
+              type='button' className={styles.btnDefault}
+              onClick={handleOpenPopup}
+            >옵션변경</button>
           </div>
         </Link>
       </td>

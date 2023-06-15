@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import styles from './Order.module.scss'
 
@@ -22,18 +21,18 @@ const OderForm = (props) => {
     {
     id : "325445747",
     prdName : "이스페더 11111111",
-    option: { 
-      option1 : {
-        name: "블랙 M",
-        count : 1,
-        price: 3000
-      },
-      option2 : {
-        name: "블루 S",
-        count : 2,
-        price: 3000
-      },
+    options: [
+      {
+      name: "블랙 M",
+      count : 1,
+      price: 3000
     },
+    {
+      name: "블루 S",
+      count : 2,
+      price: 3000
+    },
+  ],
     count: 1,
     deliveryFee: 3000,
     beforePrice : "85400",
@@ -43,26 +42,30 @@ const OderForm = (props) => {
   {
     id : "4634574",
     prdName : "test 2222222222 1+1",
-    option: { 
-      option1 : {
+    options: [
+      {
         name: "test M",
         count : 1,
         price: 3000
       },
-      option2 : {
+      {
         name: "test S",
         count : 2,
         price: 3000
       },
-    },
+    ],
     count: 3,
     deliveryFee: 3000,
     beforePrice : "53400",
     price : "25400",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
   }])
+
   const [isPopup, setIsPopup] = useState(false)
 
+  useEffect(() => {
+    console.log(data);
+  },[data])
   const handleToggle = (e) => {
     const target = e.target
     target.parentNode.classList.toggle(styles.actived)
@@ -138,9 +141,11 @@ const OderForm = (props) => {
                 </thead>
                 <tbody>
                   { data.map( ( item ) => (
-                    <TableFormLists key={data.id} data={data} item={item} setData={setData}
-                    onIncrement={handleIncrement}
-                    onDecrement={handleDecrement}
+                    <TableFormLists 
+                      key={item.id} item={item} options={item.options}
+                      onIncrement={handleIncrement}
+                      onDecrement={handleDecrement}
+                      handleOpenPopup={openPopup}
                     />
                   ))}
 
@@ -256,15 +261,9 @@ const OderForm = (props) => {
                     <option value="CH">현대</option>
                     <option value="C7">삼성</option>
                     <option value="C5">롯데</option>
-                    <option value="CA">외환</option>
                     <option value="C4">NH</option>
                     <option value="CF">하나</option>
                     <option value="CB">우리</option>
-                    <option value="C2">광주</option>
-                    <option value="C8">수협</option>
-                    <option value="C9">씨티</option>
-                    <option value="CC">전북</option>
-                    <option value="CD">제주</option>
                     <option value="CP">카카오뱅크</option>
                     <option value="CQ">케이뱅크</option>
                   </select>
