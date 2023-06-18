@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
 import OptionList from './OptionList';
 
-const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup}) => {
-  const {id, prdName, beforePrice, price, imgURL, count, deliveryFee} = item
-  const sumPrice = price * count
-  // const {option1, option2, option3} = options
+const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup, setSumOptionsAndPrice}) => {
+  const {id, prdName, beforePrice, price, imgURL, count} = item
+  const prdTotalPrice = price * count   // 제품 가격만
+  const [ sumTotalWithOptions, setSumTotalWithOptions] = useState(0);   // 옵션 가격만 
 
-  const optionList = options.map( item => item )
-
-  const totalPrice = options.reduce((accumulator, currentOption) => {
-    return accumulator + (currentOption.price * currentOption.count);
-  }, 0);
-  console.log(totalPrice);
-
-
+  useEffect(() => {
+    // 리스트 당 옵션 가격 합친거
+    const opTotalPrice = options.reduce((accumulator, currentOption) => {
+      return accumulator + (currentOption.price * currentOption.count);
+    }, 0);
+    setSumTotalWithOptions(opTotalPrice + prdTotalPrice)
+    setSumOptionsAndPrice(sumTotalWithOptions)
+}, [item])
   return (
     <tr key={id}>
       {/* 체크 */}
@@ -34,10 +34,15 @@ const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopu
           </span>
           <div className={styles.textBox}>
             <p className={styles.title}>{prdName}</p>
+            {/* 옵션 내용들 */}
             <div className={styles.option}>
               {
-                optionList.map( (item, idx) => (
-                  <OptionList key={item.name} item={item} idx={idx} />
+                options.map( (item, idx) => (
+                  <OptionList 
+                    key={item.name} 
+                    item={item} 
+                    idx={idx} 
+                   />
                 ))
               }
             </div>
@@ -67,16 +72,16 @@ const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopu
       </td> 
       {/* 합계 */}
       <td className={styles.sum}>
-        <div>{sumPrice}원</div>
+        <div>{sumTotalWithOptions}원</div>
       </td>
       {/* 적립금 */}
       <td className={styles.point}>
-        {sumPrice * 0.005} P
+        {prdTotalPrice * 0.005} P
       </td>
       {/* 배송비 */}
       <td className={styles.delivery}>
         <p className={styles.text}>
-          {deliveryFee}원
+          조건부 배송
         </p>
       </td>
     </tr>

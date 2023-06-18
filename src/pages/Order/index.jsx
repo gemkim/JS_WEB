@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './Order.module.scss'
 
@@ -7,6 +7,7 @@ import Button from 'components/Button';
 import TableFormLists from 'components/order/TableFormLists';
 import OrderInfoForm from 'components/order/OrderInfoForm';
 import ModalPopup from 'components/modal/ModalPopup';
+import OrderTotalFoot from 'components/order/OrderTotalFoot';
 
 const OderForm = (props) => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const OderForm = (props) => {
     options: [
       {
       name: "블랙 M",
-      count : 1,
+      count : 4,
       price: 3000
     },
     {
@@ -34,7 +35,6 @@ const OderForm = (props) => {
     },
   ],
     count: 1,
-    deliveryFee: 3000,
     beforePrice : "85400",
     price : "51200",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
@@ -55,23 +55,30 @@ const OderForm = (props) => {
       },
     ],
     count: 3,
-    deliveryFee: 3000,
     beforePrice : "53400",
     price : "25400",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
   }])
 
-  const [isPopup, setIsPopup] = useState(false)
+  const [ totalPrice, setTotalPrice ] = useState(57800)
+  const [ point, setPoint ] = useState(0);
+  const [ sumOptionsAndPrice, setSumOptionsAndPrice ] = useState([]);
+  const [isPopup, setIsPopup] = useState(false);
 
-  useEffect(() => {
-    console.log(data);
-  },[data])
   const handleToggle = (e) => {
     const target = e.target
     target.parentNode.classList.toggle(styles.actived)
   }
   const openPopup = (e) => {
     setIsPopup(true)
+  }
+  const closePopup = (e) => {
+    setIsPopup(false)
+  }
+
+  const changePointScore = (e) => {
+    const target = Number(e.target.value)
+    setPoint(target)
   }
 
   const handleIncrement = (list) =>{
@@ -85,18 +92,15 @@ const OderForm = (props) => {
     setData(updatedData);
   }
 
-  // const handleIncrement = (list) => {
-  //  const test = data.map( item => {
-  //     if(item.id === list.id ){
-  //       const count = list.count + 1
-  //       setData([...data, { ...list, count : count < 1 ? 1 : count }])
-  //     }
-  //   })
-  //   console.log(test);
-  // }
-
-  const handleDecrement = e => {
-    console.log('감소');
+  const handleDecrement = (list) => {
+    const updatedData = data.map(item => {
+      if(item.id === list.id){
+        const count = item.count > 1 ? item.count - 1 : 1 ;
+        return { ...list, count};
+      }
+      return item;
+    })
+    setData(updatedData);
   }
 
   const handleCancel = (e) => {
@@ -143,6 +147,8 @@ const OderForm = (props) => {
                   { data.map( ( item ) => (
                     <TableFormLists 
                       key={item.id} item={item} options={item.options}
+                      setSumOptionsAndPrice={setSumOptionsAndPrice}
+                      sumOptionsAndPrice={sumOptionsAndPrice}
                       onIncrement={handleIncrement}
                       onDecrement={handleDecrement}
                       handleOpenPopup={openPopup}
@@ -151,10 +157,7 @@ const OderForm = (props) => {
 
                 </tbody>
                 <tfoot>
-                  <tr>
-                    <td colSpan={5} className={styles.total}><span>합계</span></td>
-                    <td colSpan={2} className={styles.totalPrice}><span>53,000원</span></td>
-                  </tr>
+                  <OrderTotalFoot data={data} totalPrice={totalPrice} />
                 </tfoot>
               </table>
             </div>
@@ -178,7 +181,7 @@ const OderForm = (props) => {
           <dt>제휴 포인트 사용</dt>
           <dd>
             <div className={styles.formWrap}>
-              <input type="text" placeholder='0' />
+              <input type="text" placeholder='0' value={point} onChange={changePointScore} />
               <Button type={'submit'} text={'사용'}  size={'btnM'} state={'success'} />
             </div>
           </dd>
@@ -187,46 +190,39 @@ const OderForm = (props) => {
         <table className={`${styles.uiTable} ${styles.tbStyle01}`}>
           <caption className='sr-only'>주문상품 할인적용 리스트</caption>
           <colgroup>
-            <col style={{width: 20 + '%'}} />
-            <col style={{width: 20 + '%'}} />
-            <col style={{width: 20 + '%'}} />
-            <col style={{width: 20 + '%'}} />
-            <col style={{width: 20 + '%'}} />
+            <col style={{width: 25 + '%'}} />
+            <col style={{width: 25 + '%'}} />
+            <col style={{width: 25 + '%'}} />
+            <col style={{width: 25 + '%'}} />
           </colgroup>
           <thead>
             <tr>
-            <th scope="col">상품금액</th>
-            <th scope="col">배송비</th>
-            <th scope="col">할인금액</th>
-            <th scope="col">추가금액</th>
-            <th scope="col">결제 예정금액</th>
-          </tr>
+              <th scope="col">상품금액</th>
+              <th scope="col">할인금액</th>
+              <th scope="col">배송비</th>
+              <th scope="col">결제 예정금액</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
               <td className='center'>
                 <span className={styles.price}>
-                  <strong>52,300</strong> 원
-                </span>
-              </td>
-              <td className='center'>
-                <span className={styles.delivery}>
-                  <strong>무료</strong>
+                  <strong>{totalPrice}</strong> 원
                 </span>
               </td>
               <td className='center'>
                 <span className={styles.discount}>
-                  <strong>0</strong>원
+                  <strong>{ point }</strong>P
                 </span>
               </td>
               <td className='center'>
-                <span className={styles.extra}>
-                  <strong>0</strong>원
+                <span className={styles.delivery}>
+                  <strong>{ totalPrice >= 3000 ? '무료배송' : 3000 + '원' }</strong>
                 </span>
               </td>
               <td className='center'>
                 <span className={styles.total}>
-                  <strong>52,300</strong>원
+                  <strong>{totalPrice - point}</strong>원
                 </span>
               </td>
             </tr>
