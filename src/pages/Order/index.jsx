@@ -7,6 +7,7 @@ import Button from 'components/Button';
 import TableFormLists from 'components/order/TableFormLists';
 import OrderInfoForm from 'components/order/OrderInfoForm';
 import ModalPopup from 'components/modal/ModalPopup';
+import Logo from 'components/Logo';
 import OrderTotalFoot from 'components/order/OrderTotalFoot';
 
 const OderForm = (props) => {
@@ -102,6 +103,13 @@ const OderForm = (props) => {
     })
     setData(updatedData);
   }
+
+  const modal2Props = {
+    // 모달2에 대한 props 설정
+    // 예를 들어, 제목과 내용을 props로 전달
+    title: <Logo />,
+    content: '이것은 모달 2의 내용입니다.',
+  };
 
   const handleCancel = (e) => {
     console.alert('취소할꺼냐아아아');
@@ -304,7 +312,7 @@ const OderForm = (props) => {
         </div>
 
 
-        { isPopup && <ModalPopup isPopup={isPopup} setIsPopup={setIsPopup} /> }
+        { isPopup && <ModalPopup isPopup={isPopup} open={openPopup} close={closePopup} children={modal2Props} /> }
       </div>
     </div>
   )
