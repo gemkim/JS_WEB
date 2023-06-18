@@ -9,6 +9,7 @@ import OrderInfoForm from 'components/order/OrderInfoForm';
 import ModalPopup from 'components/modal/ModalPopup';
 import Logo from 'components/Logo';
 import OrderTotalFoot from 'components/order/OrderTotalFoot';
+import SelectOptions from 'components/SelectOptions';
 
 const OderForm = (props) => {
   const [formData, setFormData] = useState({
@@ -60,6 +61,22 @@ const OderForm = (props) => {
     price : "25400",
     imgURL : "//cdn1-aka.makeshop.co.kr/shopimages/xexymix/0330040008653.jpg"
   }])
+
+  const _creditCards = [
+    { id : 'C3', val : 'C3', name: 'KB PAY(국민)' },
+    { id : 'C1', val : 'C1', name: '비씨' },
+    { id : 'C0', val : 'C0', name: '신한' },
+    { id : 'C4', val : 'C4', name: 'NH' },
+    { id : 'C5', val : 'C5', name: '롯데' }, 
+    { id : 'C7', val : 'C7', name: '삼성' }
+  ]
+  const _installment = [
+    { id : 'C3', val : '00', name: '일시불' },
+    { id : 'C3', val : '03', name: '3개월', ect : '무이자' },
+    { id : 'C1', val : '06', name: '6개월', ect : '무이자' },
+    { id : 'C0', val : '09', name: '9개월' },
+    { id : 'C4', val : '12', name: '12개월' },
+  ]
 
   const [ totalPrice, setTotalPrice ] = useState(57800)
   const [ point, setPoint ] = useState(0);
@@ -254,41 +271,15 @@ const OderForm = (props) => {
                     <label htmlFor="credit1">법인카드</label>
                   </div>
                 </dd>
-
+                  
                 <dt>카드선택</dt>
                 <dd>
-                  <select title="카드종류" id="card_li" name="" className="">
-                    <option className="" value="">선택해주세요.</option>
-                    <option value="C3">KB Pay(국민)</option>
-                    <option value="C1">비씨</option>
-                    <option value="C0">신한</option>
-                    <option value="CH">현대</option>
-                    <option value="C7">삼성</option>
-                    <option value="C5">롯데</option>
-                    <option value="C4">NH</option>
-                    <option value="CF">하나</option>
-                    <option value="CB">우리</option>
-                    <option value="CP">카카오뱅크</option>
-                    <option value="CQ">케이뱅크</option>
-                  </select>
+                  <SelectOptions title={'카드종류'} data={_creditCards} />
                 </dd>
 
                 <dt>할부기간</dt>
                 <dd>
-                  <select title="할부" id="monthGeneralPay" name="" className="">
-                    <option value="01">일시불</option>
-                    <option value="02">2개월  무이자</option>
-                    <option value="03">3개월  무이자</option>
-                    <option value="04">4개월</option>
-                    <option value="05">5개월</option>
-                    <option value="06">6개월</option>
-                    <option value="07">7개월</option>
-                    <option value="08">8개월</option>
-                    <option value="09">9개월</option>
-                    <option value="10">10개월</option>
-                    <option value="11">11개월</option>
-                    <option value="12">12개월</option>
-                  </select>
+                  <SelectOptions title={'할부'} data={_installment} />
                 </dd>
               </dl>
             </div>
