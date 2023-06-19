@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import styles from './Order.module.scss'
 
@@ -63,19 +63,19 @@ const OderForm = (props) => {
   }])
 
   const _creditCards = [
-    { id : 'C3', val : 'C3', name: 'KB PAY(국민)' },
-    { id : 'C1', val : 'C1', name: '비씨' },
-    { id : 'C0', val : 'C0', name: '신한' },
-    { id : 'C4', val : 'C4', name: 'NH' },
-    { id : 'C5', val : 'C5', name: '롯데' }, 
-    { id : 'C7', val : 'C7', name: '삼성' }
+    { id : '1', val : 'C3', name: 'KB PAY(국민)' },
+    { id : '2', val : 'C1', name: '비씨' },
+    { id : '3', val : 'C0', name: '신한' },
+    { id : '4', val : 'C4', name: 'NH' },
+    { id : '5', val : 'C5', name: '롯데' }, 
+    { id : '6', val : 'C7', name: '삼성' }
   ]
   const _installment = [
-    { id : 'C3', val : '00', name: '일시불' },
-    { id : 'C3', val : '03', name: '3개월', ect : '무이자' },
-    { id : 'C1', val : '06', name: '6개월', ect : '무이자' },
-    { id : 'C0', val : '09', name: '9개월' },
-    { id : 'C4', val : '12', name: '12개월' },
+    { id : '1', val : '00', name: '일시불' },
+    { id : '2', val : '03', name: '3개월', ect : '무이자' },
+    { id : '3', val : '06', name: '6개월', ect : '무이자' },
+    { id : '4', val : '09', name: '9개월' },
+    { id : '5', val : '12', name: '12개월' },
   ]
 
   const [ totalPrice, setTotalPrice ] = useState(57800)
@@ -134,6 +134,28 @@ const OderForm = (props) => {
   const handlePay = (e) => {
     alert('결제완료 되었습니다.')
   }
+
+  // checkbox 전체선택 기능
+  const tableCheBoxRef = useRef();
+  const onSyncCheckBox = (e) => {
+    const chk_value = (e.target.value)
+    const chk_rel = e.target.getAttribute('rel');
+    tableCheBoxRef.current.classList.toggle(chk_rel)
+
+    handleTypeChecked(chk_value, chk_rel)
+  }
+
+    function handleTypeChecked (chk_value, chk_rel){
+      
+    // if(chk_value=="Y"){
+    //         $("."+chk_rel+" input[type='radio'][value='Y']:visible").prop("checked", true);
+    //             $("."+chk_rel+" input[type='checkbox']:visible").prop({"checked":true, "disabled":false});
+    //     } else {
+    //             $("."+chk_rel+" input[type='radio'][value='N']:visible").prop("checked", true);
+    //             $("."+chk_rel+" input[type='checkbox']:visible").prop({"checked":false, "disabled":true});
+    //     }
+    }
+  // //e: 230525 add
   return (
     <div className={styles.orderWrap}>
       <PageTitle title={'주문서'} />
@@ -142,7 +164,7 @@ const OderForm = (props) => {
           <fieldset>
             <legend className='sr-only'>주문 폼</legend>
             <div className={styles.tableScrollable}>
-              <table className={styles.tbBoard}>
+              <table ref={tableCheBoxRef} className={styles.tbBoard}>
                 <caption className='sr-only'>주문리스트</caption>
                 <colgroup>
                   <col style={{width: 4 + '%'}} />
@@ -157,7 +179,7 @@ const OderForm = (props) => {
                   <tr>
                     <th scope="col">
                       <div className={styles.checkAll}>
-                        <input type='checkbox' className='select' onChange={null} /><span className="sr-only">선택</span>
+                        <input type='checkbox' className='select' value='Y' rel='sync_chk' onChange={onSyncCheckBox} /><span className="sr-only">선택</span>
                       </div>
                     </th>
                     <th scope="col"><span>상품명</span></th>
@@ -172,6 +194,8 @@ const OderForm = (props) => {
                   { data.map( ( item ) => (
                     <TableFormLists 
                       key={item.id} item={item} options={item.options}
+                      chkboxValue="N"
+                      chkRel="sync_chk"
                       setSumOptionsAndPrice={setSumOptionsAndPrice}
                       sumOptionsAndPrice={sumOptionsAndPrice}
                       onIncrement={handleIncrement}

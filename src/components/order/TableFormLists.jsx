@@ -3,7 +3,7 @@ import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
 import OptionList from './OptionList';
 
-const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup, setSumOptionsAndPrice}) => {
+const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup, setSumOptionsAndPrice, chkboxValue, chkRel}) => {
   const {id, prdName, beforePrice, price, imgURL, count} = item
   const prdTotalPrice = price * count   // 제품 가격만
   const [ sumTotalWithOptions, setSumTotalWithOptions] = useState(0);   // 옵션 가격만 
@@ -22,7 +22,7 @@ const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopu
       <td className={styles.check}>
         <div className={styles.checkBox}>
           <label htmlFor="chk1">
-            <input type="checkbox" id="chk1" onChange={null} /><span className='sr-only'>선택하기</span>
+          <input type="checkbox" id="chk1" value={chkboxValue} onChange={null} rel={chkRel} /><span className='sr-only'>선택하기</span>
           </label>
         </div>
       </td>
