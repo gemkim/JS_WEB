@@ -185,6 +185,7 @@ const OderForm = (props) => {
                   <OrderTotalFoot data={data} totalPrice={totalPrice} />
                 </tfoot>
               </table>
+              <p>50000원 이상 구매시 무료배송 입니다.</p>
             </div>
           </fieldset>
         </div>
