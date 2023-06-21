@@ -10,6 +10,7 @@ import ModalPopup from 'components/modal/ModalPopup';
 import Logo from 'components/Logo';
 import OrderTotalFoot from 'components/order/OrderTotalFoot';
 import SelectOptions from 'components/SelectOptions';
+import { addSubscriber, store } from 'redux/store';
 
 const OderForm = (props) => {
   const [formData, setFormData] = useState({
@@ -82,6 +83,10 @@ const OderForm = (props) => {
   const [ point, setPoint ] = useState(0);
   const [ sumOptionsAndPrice, setSumOptionsAndPrice ] = useState([]);
   const [isPopup, setIsPopup] = useState(false);
+
+  
+  store.dispatch(addSubscriber())
+  console.log(store.getState());
 
   const handleToggle = (e) => {
     const target = e.target

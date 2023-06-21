@@ -1,8 +1,27 @@
-import { createStore } from "redux";
-import rootReducer from "./rootReducer";
+const redux = require('redux');
+const createStore = redux.createStore;
+//actions
+const ADD_SUBSCRIBER = 'ADD_SUBSCRIBER'
+export const addSubscriber = () => {
+  return {
+    type: ADD_SUBSCRIBER
+  }
+}
 
-const store = createStore(rootReducer);
+// reduvers - handling
+const initialState = {
+  subScribers : 365
+}
+const reducer = (state = initialState, action) => {
+  switch(action.type){
+    case ADD_SUBSCRIBER :
+      return {
+        ...state,
+        subScribers : state.subScribers + 1
+      }
+    default: return state;
+  }
+}
 
-// 출처
-// https://velog.io/@chaerin00/Redux-%EC%82%AC%EC%9A%A9%EB%B2%95-%EA%B8%B0%EC%B4%88-useState%EC%B2%98%EB%9F%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
-export default store;
+//store
+export const store = createStore(reducer)
