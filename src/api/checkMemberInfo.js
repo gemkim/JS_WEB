@@ -1,24 +1,41 @@
-import axios from "axios";
+// import axios from "axios";
+import jwt from "jsonwebtoken";
 
-export const checkMemberInfo = async (refresh_token) => {
-  return await axios
-    .post('/user/login', {
-      refresh: refresh_token,
-    })
-    .then((response) => {
-      return response.data.access;
-    })
-    .catch((e) => {
-      console.log(e.response.data);
-    });
-};
+export async function checkMemberInfo(userInfo){
+  const { memberId, password } = userInfo
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  const data = JSON.stringify(userInfo);
 
-export const checkAccessToken = async (refresh_token) => {
-  if (axios.defaults.headers.common["X-AUTH_TOKEN"] === undefined) {
-    return await checkMemberInfo(refresh_token).then((response) => {
-      return response;
-    });
-  } else {
-    return axios.defaults.headers.common["X-AUTH_TOKEN"].split(" ")[1];
-  }
-};
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: data,
+    redirect: 'follow'
+  };
+
+  
+  // 토큰 발급하기
+  const token = jwt.sign({ memberId, password }, "X-AUTH_TOKEN");
+  console.log(token);
+
+  // 토큰 검증하기
+  const verified = jwt.verify(token, "X-AUTH_TOKEN");
+  console.log(verified);
+  
+  return await fetch("/user/login", requestOptions)
+  .then( response => response.text())
+  .then( result => {
+    if(result) {
+      if(result.memberId === userInfo.memberId ) {
+        alert(`반갑습니다😍. ${result.memberId}님 로그인이 되었습니다.`)
+        window.location.href="/"
+      }
+      } else {
+        alert('정보가 없습니다. 아이디와 패스워드를 확인해주세요');
+      }
+    })
+    .catch(error => console.log('error', error));
+  };
+
