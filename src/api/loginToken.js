@@ -12,8 +12,8 @@ fetch("/user/login", requestOptions)
   .then(response => response.text())
   .then(res => {
     localStorage.setItem('accessToken', res);
-    localStorage.setItem('refreshToken', res)
-    localStorage.setItem('expiredTime', res)
+    // localStorage.setItem('refreshToken', res)
+    // localStorage.setItem('expiredTime', res)
     setToken(res, requestOptions.headers)
   })
   .catch(error => console.log('error', error));
