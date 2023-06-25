@@ -28,8 +28,9 @@ const checkTokenExpiration =  () => {
   if (token) {
     const decodedToken = decodeToken(token);
     const expirationTime = decodedToken.exp;
-    setInterval(() => {
+    const getRefreshToken = setInterval(() => {
       let currentTime = Math.floor(Date.now() / 1000);
+      console.log(expirationTime- currentTime);
       if (expirationTime- currentTime < 30 ){
         try {
           console.log('test');
@@ -39,12 +40,15 @@ const checkTokenExpiration =  () => {
   
           // 새로 발급받은 JWT 토큰을 로컬 스토리지에 저장
           // localStorage.setItem('token', newToken);
+          clearInterval(getRefreshToken)
         } catch (error) {
           // RefreshToken 요청 실패
           console.error('RefreshToken 요청 실패:', error);
         }
       }
     }, 1000);
+
+   
   }
 };
 
